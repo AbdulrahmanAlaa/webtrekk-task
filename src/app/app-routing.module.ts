@@ -13,7 +13,7 @@ const routes: Routes = [
   },
   {
     path: pages.customerManagement.path,
-    loadChildren: pages.customerManagement.loadChildren
+    loadChildren: 'src/app/customer-management/customer-management.module#CustomerManagementModule'
   },
   {
     path: '**',
