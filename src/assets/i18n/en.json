@@ -5,7 +5,12 @@
     "customer-management":{
         "list":{
             "main-title":"Our Customers",
-            "birth-date":"Birthdate :"
+            "birth-date":"Birthdate :",
+            "tool-tip":{
+                "add":"Add new customer",
+                "edit":"Edit Customer",
+                "delete":"Delete Customer"
+            }
         }
     }
 }

@@ -25,6 +25,8 @@ to test any other language please change **defines.ts** `DEFAULT_LANGUAGE` to be
 
 * Angular Lazy loading modules
 
+* created special icons font from svg using `iconmoon` fonts
+
 # Running the project
 after downloading the project use `npm i` to install the project packages dependency
 then run the following command `ng serve -o --port 5000` the project shall be running on the following url

@@ -1,0 +1,11 @@
+@import '../../../assets/styles/colors';
+.list{
+    // overrides the add icon font and size
+    .icon-add{
+        font-size: 40px;
+        color:$font-blue;
+    }
+    &__white{
+        color:$font-white !important;
+    }
+}

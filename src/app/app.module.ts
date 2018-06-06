@@ -8,7 +8,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-
+import {TooltipModule} from 'ngx-bootstrap/tooltip';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -21,6 +21,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
   imports: [
     HomeModule,
+    TooltipModule.forRoot(),
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

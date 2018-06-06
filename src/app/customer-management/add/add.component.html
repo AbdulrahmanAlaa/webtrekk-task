@@ -1,0 +1,43 @@
+<form [formGroup]="addCustomerForm" (ngSubmit)="submit()" novalidate>
+  <div class="row">
+    <!-- First Name Part -->
+    <div class="form-group col-md-6">
+      <label for="fname">First Name</label>
+      <input formControlName="fname" type="text" class="form-control" id="fname" placeholder="First Name">
+    </div>
+    <!-- Last Name Part -->
+    <div class="form-group col-md-6">
+      <label for="lname">Last Name</label>
+      <input formControlName="lname" type="text" class="form-control" id="lname" placeholder="Last Name">
+    </div>
+  </div>
+  <!-- BirthDate Part -->
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label for="birthday">Birthday</label>
+      <input formControlName="birthday" id="birthday" class="form-control" [bsConfig]="{ containerClass: 'theme-default' }" bsDatepicker
+        [bsValue]="initialDate">
+    </div>
+  </div>
+  <!-- Gender Part -->
+  <div class="row">
+    <div class="form-group col-md-6">
+      <label class="mr-3" for="birthday">Gender</label>
+        <button id="button-basic" dropdownToggle type="button" class="btn btn-default dropdown-toggle col-lg-3" aria-controls="gender">
+          {{ addCustomerForm.controls.gender.value == 'm'?'Male':'Female'}}
+          <span class="caret"></span>
+        </button>
+        <ul id="gender" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+          <li role="menuitem">
+            <a (click)="setGender('m')" class="dropdown-item">Male</a>
+          </li>
+          <li role="menuitem">
+            <a (click)="setGender('w')" class="dropdown-item">FeMale</a>
+          </li>
+        </ul>
+    </div>
+  </div>
+
+  <button [routerLink]="['/customers']" class="btn btn-default">Cancel</button>
+  <button type="submit" class="btn btn-primary ml-2">Add</button>
+</form>
