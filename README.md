@@ -25,11 +25,15 @@ to test any other language please change **defines.ts** `DEFAULT_LANGUAGE` to be
 
 * Angular Lazy loading modules
 
-* created special icons font from svg using `iconmoon` fonts
+* Created special icons font from svg using `iconmoon` fonts
 
-* used Heruko for deployment with each master push on `https://webtrekk-customer-management.herokuapp.com/customers`
+* Used Heruko for deployment with each master push on `https://webtrekk-customer-management.herokuapp.com/customers`
 
-* used `travis` for CI/CD to check if all the unit test runs and build work before deployment
+* Used `travis` for CI/CD to check if all the unit test runs and build work before deployment
+
+* Created database on mongoLab on the following url to connect  `mongodb://admin:admin123@ds147180.mlab.com:47180/webtrekk`
+
+* Created NodeJs server with express and mongoose to handle DB schema validation and seed data you provided as intial value for customers
 
 # Running the project
 after downloading the project use `npm i` to install the project packages dependency
