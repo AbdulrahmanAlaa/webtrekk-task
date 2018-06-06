@@ -7,8 +7,6 @@ before_install:
   - yarn global add @angular/cli@latest
 script:
   - npm run 
-before_deploy:
-  - npm run build
 deploy:
   provider: heroku
   api_key:
