@@ -3,11 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "postinstall": "ng build --aot -prod"
   },
   "private": true,
   "dependencies": {
@@ -26,10 +27,13 @@
     "bootstrap": "^4.1.1",
     "classlist.js": "^1.1.20150312",
     "core-js": "^2.5.4",
+    "express": "^4.16.3",
     "jquery": "^3.3.1",
     "moment": "^2.22.2",
     "ngx-bootstrap": "^3.0.0",
+    "path": "^0.12.7",
     "rxjs": "^6.0.0",
+    "typescript": "~2.7.2",
     "web-animations-js": "^2.3.1",
     "zone.js": "^0.8.26"
   },
@@ -43,6 +47,7 @@
     "@types/moment": "^2.13.0",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
+    "enhanced-resolve": "^3.3.0",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
     "karma": "~1.7.1",
