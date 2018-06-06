@@ -1,9 +1,8 @@
-import { AddComponent } from './add/add.component';
 import { ListComponent } from './list/list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { EditComponent } from './edit/edit.component';
 import { pages } from '../config/pages-config';
+import { AddEditComponent } from './add/add-edit.component';
 
 const routes: Routes = [
   {
@@ -12,11 +11,11 @@ const routes: Routes = [
   },
   {
     path:pages.customerManagement.children.add.path,
-    component:AddComponent
+    component:AddEditComponent
   },
   {
     path:pages.customerManagement.children.edit.path,
-    component:EditComponent
+    component:AddEditComponent
   }
 ];
 

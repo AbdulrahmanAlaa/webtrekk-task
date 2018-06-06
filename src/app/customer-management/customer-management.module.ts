@@ -4,13 +4,12 @@ import { CommonModule } from '@angular/common';
 
 import { CustomerManagementRoutingModule } from './customer-management-routing.module';
 import { ListComponent } from './list/list.component';
-import { EditComponent } from './edit/edit.component';
-import { AddComponent } from './add/add.component';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoContentComponent } from './no-content/no-content.component';
+import { AddEditComponent } from './add/add-edit.component';
 
 @NgModule({
   imports: [
@@ -23,6 +22,6 @@ import { NoContentComponent } from './no-content/no-content.component';
     CommonModule,
     CustomerManagementRoutingModule
   ],
-  declarations: [ListComponent, EditComponent, AddComponent, NoContentComponent]
+  declarations: [ListComponent, AddEditComponent, NoContentComponent]
 })
 export class CustomerManagementModule { }

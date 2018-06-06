@@ -9,6 +9,9 @@ import * as moment from 'moment';
   providedIn: 'root'
 })
 export class CustomersService {
+  getByCustomerID(id: number): Observable<any> {
+    return of(this.customerData.find(customer => customer.customerID === id));
+  }
   private customerData = CUSTOMERS_DATA;
   constructor(private httpClient: HttpClient) {
   }
@@ -23,8 +26,14 @@ export class CustomersService {
     return of(customerId);
   }
 
-  updateCustomer() {
-
+  updateCustomer(data, id: number) {
+    const customer = this.customerData.find((customer) => customer.customerID == id);
+    if (customer) {
+      customer.birthday = moment(data.birthday as Date).format('YYYY-MM-DD');
+      customer.name = { first: data.fname, last: data.lname };
+      customer.gender = data.gender;
+    }
+    return of(customer);
   }
 
   addCustomer(data) {

@@ -1,7 +1,8 @@
 {
     "common":{
         "cancel":"Cancel",
-        "add":"Add"
+        "add":"Add",
+        "edit":"Save"
     },
     "project-info":{
         "name":"WebTrekk Customer Portal"

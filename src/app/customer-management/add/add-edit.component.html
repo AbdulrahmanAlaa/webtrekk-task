@@ -1,5 +1,10 @@
 <form [formGroup]="addCustomerForm" (ngSubmit)="submit()" novalidate>
-  <div class="row ">
+  <div class="row">
+    <div class="col-lg-8">
+      <img width="250px" src="{{ addCustomerForm.controls.gender.value == 'm'?'assets/images/male.png':'assets/images/female.png'}}" class="rounded-circle" alt="">
+    </div>
+  </div>
+  <div class="row">
     <!-- First Name Part -->
     <div [ngClass]="{'was-validated': addCustomerForm.controls['fname']?.touched && !addCustomerForm.controls['fname']?.valid}" class="form-group col-md-4">
       <label for="fname">{{'customer-management.add.first-name' |translate}}</label>
@@ -49,5 +54,5 @@
   </div>
 
   <button [routerLink]="['/customers']" class="btn btn-default">{{'common.cancel'|translate}}</button>
-  <button type="submit" class="btn btn-dark ml-2">{{'common.add'|translate}}</button>
+  <button type="submit" class="btn btn-dark ml-2">{{isEditMode?('common.edit'|translate):('common.add'|translate)}}</button>
 </form>
