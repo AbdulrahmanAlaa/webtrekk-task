@@ -27,6 +27,10 @@ to test any other language please change **defines.ts** `DEFAULT_LANGUAGE` to be
 
 * created special icons font from svg using `iconmoon` fonts
 
+* used Heruko for deployment with each master push on `https://webtrekk-customer-management.herokuapp.com/customers`
+
+* used `travis` for CI/CD to check if all the unit test runs and build work before deployment
+
 # Running the project
 after downloading the project use `npm i` to install the project packages dependency
 then run the following command `ng serve -o --port 5000` the project shall be running on the following url

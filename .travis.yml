@@ -1,0 +1,17 @@
+language: node_js
+node_js:
+  - 6.9.5
+cache: yarn
+install: yarn 
+before_install:
+  - yarn global add @angular/cli@latest
+script:
+  - npm run 
+before_deploy:
+  - npm run build
+deploy:
+  provider: heroku
+  api_key:
+    secure: c951e33f-7b3d-4228-9d58-4bfb880d14cd
+  app: webtrekk-customer-management
+  branch: master
