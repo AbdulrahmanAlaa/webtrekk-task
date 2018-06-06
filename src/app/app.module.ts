@@ -1,3 +1,4 @@
+import { HomeModule } from './home/home.module';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -19,6 +20,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     AppComponent
   ],
   imports: [
+    HomeModule,
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,

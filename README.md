@@ -21,7 +21,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * Multi language support
 to test any other language please change **defines.ts** `DEFAULT_LANGUAGE` to be `ar` 
 
-* Using `ngx-bootstrap` with overriding for better look and feel
+* Using `ngx-bootstrap` with overriding the bootstrap `scss` source code for better look and feel
+
+* Angular Lazy loading modules
 
 # Running the project
 after downloading the project use `npm i` to install the project packages dependency
