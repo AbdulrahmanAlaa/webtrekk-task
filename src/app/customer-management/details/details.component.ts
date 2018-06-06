@@ -8,7 +8,7 @@ import { Customer } from '../../shared/interfaces/customer.interface';
 @Component({
   selector: 'wt-details',
   templateUrl: './details.component.html',
-  styleUrls: ['./details.component.scss']
+  styleUrls: []
 })
 export class DetailsComponent implements OnInit {
   /** holds the subscription intfo in order to be deleted to clear the memory */
