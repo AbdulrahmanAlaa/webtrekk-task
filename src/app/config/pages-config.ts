@@ -1,3 +1,7 @@
+/**
+ * holds all application routes that could be replaced in future with out cracking 
+ * the app
+ */
 export const pages = {
     customerManagement:{
         path:'customers',

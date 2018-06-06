@@ -5,7 +5,7 @@ import { LANGUAGES, DEFAULT_LANGUAGE } from './config/defines';
 @Component({
   selector: 'wt-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: []
 })
 export class AppComponent {
   /**

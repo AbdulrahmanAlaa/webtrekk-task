@@ -4,7 +4,9 @@ export const LANGUAGES = ['en', 'de'];
 /** Default language for our application */
 export const DEFAULT_LANGUAGE = 'en';
 
-
+/**
+ * mocking backend data
+ */
 export const CUSTOMERS_DATA=[
     {
         "customerID": 1,

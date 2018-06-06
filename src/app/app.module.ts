@@ -15,6 +15,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient, 'assets/i18n/', '.json');
 }
 
+/**
+ * the App Module decorator that contains needed modules and providers for application to run
+ */
 @NgModule({
   declarations: [
     AppComponent

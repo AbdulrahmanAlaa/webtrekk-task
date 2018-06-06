@@ -5,6 +5,9 @@ import { Routes, RouterModule } from '@angular/router';
 import { pages } from '../config/pages-config';
 import { AddEditComponent } from './add/add-edit.component';
 
+/**
+ * the Customer Routing Module routes that contains needed all module CRUD operations routs
+ */
 const routes: Routes = [
   {
     path:pages.customerManagement.children.list.path,

@@ -12,6 +12,9 @@ import { NoContentComponent } from './no-content/no-content.component';
 import { AddEditComponent } from './add/add-edit.component';
 import { DetailsComponent } from './details/details.component';
 
+/**
+ * the Home Module decorator that contains Customer Management Components Services ....
+ */
 @NgModule({
   imports: [
     FormsModule,
