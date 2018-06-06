@@ -18,11 +18,6 @@ export class ListComponent implements OnInit {
     this.updateCustomersList();
   }
 
-  removeCustomer(customer: Customer) {
-    this.customersService.deleteCustomer(customer.customerID).subscribe(() => {
-      this.updateCustomersList();
-    })
-  }
 
   updateCustomersList() {
     this.customersService.getCustomers().subscribe((customers: Array<Customer>) => {

@@ -11,7 +11,11 @@ export const pages = {
             },
             edit:{
                 path:':id'
+            },
+            delete:{
+                path:'delete/:id'
             }
+
         }
     }
 };

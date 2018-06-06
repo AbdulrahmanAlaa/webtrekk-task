@@ -10,6 +10,7 @@ import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoContentComponent } from './no-content/no-content.component';
 import { AddEditComponent } from './add/add-edit.component';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   imports: [
@@ -22,6 +23,6 @@ import { AddEditComponent } from './add/add-edit.component';
     CommonModule,
     CustomerManagementRoutingModule
   ],
-  declarations: [ListComponent, AddEditComponent, NoContentComponent]
+  declarations: [ListComponent, AddEditComponent, NoContentComponent, DetailsComponent]
 })
 export class CustomerManagementModule { }

@@ -24,7 +24,6 @@ export class AddEditComponent implements OnInit {
     private route: ActivatedRoute,
     private customerService: CustomersService,
     private formBuilder: FormBuilder,
-    private customersService: CustomersService,
     private router: Router
   ) {
   }
@@ -36,7 +35,7 @@ export class AddEditComponent implements OnInit {
           this.isEditMode = true;
           this.customer = customer
         }
-        console.log('edit', customer)
+        console.log('edit', customer);
       });
     });
 

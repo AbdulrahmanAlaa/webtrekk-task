@@ -1,3 +1,4 @@
+import { DetailsComponent } from './details/details.component';
 import { ListComponent } from './list/list.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path:pages.customerManagement.children.add.path,
     component:AddEditComponent
+  },
+  {
+    path:pages.customerManagement.children.delete.path,
+    component:DetailsComponent
   },
   {
     path:pages.customerManagement.children.edit.path,
