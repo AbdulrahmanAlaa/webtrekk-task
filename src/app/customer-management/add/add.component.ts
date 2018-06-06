@@ -1,5 +1,8 @@
+import { pages } from './../../config/pages-config';
+import { CustomersService } from './../customers.service';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'wt-add',
@@ -12,16 +15,20 @@ export class AddComponent implements OnInit {
 
   public addCustomerForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(
+    private formBuilder: FormBuilder,
+    private customersService: CustomersService,
+    private router:Router
+  ) {
+  }
+  
+  ngOnInit() {
     this.addCustomerForm = this.formBuilder.group({
-      fname: '',
-      lname: '',
+      fname:[ '',Validators.required],
+      lname: ['',Validators.required],
       birthday: [new Date()],
       gender:'m'
     });
-  }
-
-  ngOnInit() {
   }
 
   setGender(value:string){
@@ -29,6 +36,10 @@ export class AddComponent implements OnInit {
   }
 
   submit() {
-    console.log(this.addCustomerForm.value)
+    if (this.addCustomerForm.valid) {
+      this.customersService.addCustomer(this.addCustomerForm.value).subscribe(customer=>{
+        this.router.navigate([pages.customerManagement.path]);
+      });
+    }
   }
 }

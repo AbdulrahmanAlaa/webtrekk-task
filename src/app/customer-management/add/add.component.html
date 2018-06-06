@@ -1,20 +1,27 @@
 <form [formGroup]="addCustomerForm" (ngSubmit)="submit()" novalidate>
-  <div class="row">
+  <div class="row ">
     <!-- First Name Part -->
-    <div class="form-group col-md-6">
-      <label for="fname">First Name</label>
-      <input formControlName="fname" type="text" class="form-control" id="fname" placeholder="First Name">
+    <div [ngClass]="{'was-validated': addCustomerForm.controls['fname']?.touched && !addCustomerForm.controls['fname']?.valid}" class="form-group col-md-4">
+      <label for="fname">{{'customer-management.add.first-name' |translate}}</label>
+      <input formControlName="fname" type="text" class="form-control" id="fname" [placeholder]="'customer-management.add.first-name' |translate"
+        required>
+      <div class="invalid-feedback">
+        Please enter first name.
+      </div>
     </div>
     <!-- Last Name Part -->
-    <div class="form-group col-md-6">
-      <label for="lname">Last Name</label>
-      <input formControlName="lname" type="text" class="form-control" id="lname" placeholder="Last Name">
+    <div  [ngClass]=" { 'was-validated': addCustomerForm.controls['lname']?.touched && !addCustomerForm.controls['lname']?.valid}" class="form-group col-md-4">
+      <label for="lname">{{'customer-management.add.last-name' |translate}}</label>
+      <input formControlName="lname" type="text" class="form-control" id="lname" [placeholder]="'customer-management.add.last-name' |translate" required>
+      <div class="invalid-feedback">
+        Please enter last name.
+      </div>
     </div>
   </div>
   <!-- BirthDate Part -->
   <div class="row">
-    <div class="form-group col-md-6">
-      <label for="birthday">Birthday</label>
+    <div class="form-group col-md-4">
+      <label for="birthday">{{'customer-management.add.birthday' |translate}}</label>
       <input formControlName="birthday" id="birthday" class="form-control" [bsConfig]="{ containerClass: 'theme-default' }" bsDatepicker
         [bsValue]="initialDate">
     </div>
@@ -22,22 +29,25 @@
   <!-- Gender Part -->
   <div class="row">
     <div class="form-group col-md-6">
-      <label class="mr-3" for="birthday">Gender</label>
-        <button id="button-basic" dropdownToggle type="button" class="btn btn-default dropdown-toggle col-lg-3" aria-controls="gender">
-          {{ addCustomerForm.controls.gender.value == 'm'?'Male':'Female'}}
+      <label class="mr-3" for="gender">{{'customer-management.add.gender' |translate}}</label>
+      <div class="btn-group" dropdown>
+        <button id="gender" dropdownToggle type="button" class="btn btn-default dropdown-toggle" aria-controls="dropdown-basic">
+          {{ addCustomerForm.controls.gender.value == 'm'?('customer-management.add.male' |translate):('customer-management.add.female'
+          |translate)}}
           <span class="caret"></span>
         </button>
-        <ul id="gender" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-basic">
+        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="gender">
           <li role="menuitem">
-            <a (click)="setGender('m')" class="dropdown-item">Male</a>
+            <a (click)="setGender('m')" class="dropdown-item">{{'customer-management.add.male' |translate}}</a>
           </li>
           <li role="menuitem">
-            <a (click)="setGender('w')" class="dropdown-item">FeMale</a>
+            <a (click)="setGender('w')" class="dropdown-item">{{'customer-management.add.female' |translate}}</a>
           </li>
         </ul>
+      </div>
     </div>
   </div>
 
-  <button [routerLink]="['/customers']" class="btn btn-default">Cancel</button>
-  <button type="submit" class="btn btn-primary ml-2">Add</button>
+  <button [routerLink]="['/customers']" class="btn btn-default">{{'common.cancel'|translate}}</button>
+  <button type="submit" class="btn btn-dark ml-2">{{'common.add'|translate}}</button>
 </form>

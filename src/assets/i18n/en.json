@@ -1,4 +1,8 @@
 {
+    "common":{
+        "cancel":"Cancel",
+        "add":"Add"
+    },
     "project-info":{
         "name":"WebTrekk Customer Portal"
     },
@@ -11,6 +15,14 @@
                 "edit":"Edit Customer",
                 "delete":"Delete Customer"
             }
+        },
+        "add":{
+            "first-name":"First Name",
+            "last-name":"Last Name",
+            "birthday":"Birthday",
+            "gender":"Gender",
+            "male":"Male",
+            "female":"Female"
         }
     }
 }
