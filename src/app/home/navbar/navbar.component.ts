@@ -1,3 +1,4 @@
+import { TranslateService } from '@ngx-translate/core';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
 
-  constructor() { }
+  constructor(    private translate: TranslateService
+  ) { }
 
   ngOnInit() {
   }
-
+  languageChanged(language){
+    //Configure the Language to be English by default
+    this.translate.use(language);
+ }
 }

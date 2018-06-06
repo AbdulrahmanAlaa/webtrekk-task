@@ -30,7 +30,7 @@ export class DetailsComponent implements OnInit {
     });
   }
 
-  removeCustomer(customer: Customer) {
+  removeCustomer() {
     this.customerService.deleteCustomer(this.customer.customerID).subscribe(() => {
       this.router.navigate([pages.customerManagement.path]);
     })

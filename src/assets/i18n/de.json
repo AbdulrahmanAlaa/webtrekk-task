@@ -1,0 +1,30 @@
+{
+    "common":{
+        "cancel":"Abbrechen",
+        "add":"Hinzufügen",
+        "edit":"Bearbeiten",
+        "delete":"Löschen"
+    },
+    "project-info":{
+        "name":"WebTrekk Kunde Portal"
+    },
+    "customer-management":{
+        "list":{
+            "main-title":"Unsere Kunden",
+            "birth-date":"Geburtsdatum:",
+            "tool-tip":{
+                "add":"Neuen Kunden hinzufügen",
+                "edit":"Kunden bearbeiten",
+                "delete":"Kunden löschen"
+            }
+        },
+        "add":{
+            "first-name":"Vorname",
+            "last-name":"Nachname",
+            "birthday":"Geburtstag",
+            "gender":"Geschlecht",
+            "male":"Männlich",
+            "female":"Weiblich"
+        }
+    }
+}

@@ -54,9 +54,9 @@ export class AddEditComponent implements OnInit {
   submit() {
     if (this.addCustomerForm.valid) {
       if (this.isEditMode) {
-        this.customersService.updateCustomer(this.addCustomerForm.value,this.customer.customerID).subscribe(customer =>  this.handleSuccess(customer));
+        this.customerService.updateCustomer(this.addCustomerForm.value,this.customer.customerID).subscribe(customer =>  this.handleSuccess(customer));
       } else {
-        this.customersService.addCustomer(this.addCustomerForm.value).subscribe(customer =>  this.handleSuccess(customer));
+        this.customerService.addCustomer(this.addCustomerForm.value).subscribe(customer =>  this.handleSuccess(customer));
       }
     }
   }
