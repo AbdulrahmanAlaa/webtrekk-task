@@ -1,4 +1,6 @@
+import { CustomersService } from './../customers.service';
 import { Component, OnInit } from '@angular/core';
+import { Customer } from '../../shared/interfaces/customer.interface';
 
 @Component({
   selector: 'wt-list',
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ListComponent implements OnInit {
 
-  constructor() { }
+  public customers = [];
+  constructor(
+    private customersService: CustomersService
+  ) { }
 
   ngOnInit() {
+    this.updateCustomersList();
+  }
+
+  removeCustomer(customer: Customer) {
+    this.customersService.deleteCustomer(customer.customerID).subscribe(() => {
+      this.updateCustomersList();
+    })
+  }
+
+  updateCustomersList() {
+    this.customersService.getCustomers().subscribe((customers: Array<Customer>) => {
+      this.customers = customers;
+    });
   }
 
 }

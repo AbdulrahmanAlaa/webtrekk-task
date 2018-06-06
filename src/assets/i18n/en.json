@@ -1,5 +1,11 @@
 {
     "project-info":{
         "name":"WebTrekk Customer Portal"
+    },
+    "customer-management":{
+        "list":{
+            "main-title":"Our Customers",
+            "birth-date":"Birthdate :"
+        }
     }
 }

@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import {pages} from './config/pages-config';
+import { pages } from './config/pages-config';
 
 const routes: Routes = [
   {
-    path:pages.customerManagement.path,
-    pathMatch:'full',
-    loadChildren:pages.customerManagement.loadChildren
+    path: '',
+    pathMatch: 'full',
+    redirectTo: pages.customerManagement.path
+  },
+  {
+    path: pages.customerManagement.path,
+    loadChildren: pages.customerManagement.loadChildren
   }
 ];
 
