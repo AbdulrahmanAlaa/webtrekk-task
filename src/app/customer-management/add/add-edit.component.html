@@ -1,4 +1,4 @@
-<form [formGroup]="addCustomerForm" (ngSubmit)="submit()" novalidate>
+<form *ngIf="addCustomerForm" [formGroup]="addCustomerForm" (ngSubmit)="submit()" novalidate>
   <div class="row">
     <div class="col-lg-8">
       <img width="250px" src="{{ addCustomerForm.controls.gender.value == 'm'?'assets/images/male.png':'assets/images/female.png'}}" class="rounded-circle" alt="">

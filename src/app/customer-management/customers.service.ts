@@ -1,8 +1,10 @@
+import { API_ROUTES } from './../config/api-route';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CUSTOMERS_DATA } from '../config/defines';
 import { Customer } from '../shared/interfaces/customer.interface';
-import { of, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import * as moment from 'moment';
 
 @Injectable({
@@ -13,7 +15,7 @@ export class CustomersService {
   /** holds all customers when the app loads */
   private customerData = CUSTOMERS_DATA;
 
-    /*************  Life Cycle Hooks  ***********/
+  /*************  Life Cycle Hooks  ***********/
   /**
    * parameters passed by angular Dependecy Injection 
    * @param httpClient Help creating ajax calls to backend
@@ -28,8 +30,8 @@ export class CustomersService {
   /**
    * Get All customers 
    */
-  public getCustomers(): Observable<Array<Customer>> {
-    return of(this.customerData);
+  public getCustomers(): Observable<any> {
+    return this.httpClient.get(API_ROUTES.GET_CUSTOMERS).pipe(map(response => this.handleResponse(response)));
   }
 
   /**
@@ -37,7 +39,7 @@ export class CustomersService {
    * @param id {number} Customer Id 
    */
   public getByCustomerID(id: number): Observable<any> {
-    return of(this.customerData.find(customer => customer.customerID === id));
+    return this.httpClient.get(API_ROUTES.GET_CUSTOMER_BY_ID(id)).pipe(map(response => this.handleResponse(response)));;
   }
 
   /**
@@ -45,9 +47,7 @@ export class CustomersService {
    * @param customerId {number} customer identifier
    */
   public deleteCustomer(customerId: number) {
-    const customer = this.customerData.indexOf(this.customerData.filter((customer) => customer.customerID == customerId)[0]);
-    this.customerData.splice(customer, 1)
-    return of(customerId);
+    return this.httpClient.delete(API_ROUTES.DELETE_CUSTOMER_BY_ID(customerId)).pipe(map(response => this.handleResponse(response)));;
   }
 
   /**
@@ -56,13 +56,15 @@ export class CustomersService {
    * @param id {number} customer identifier
    */
   public updateCustomer(data, id: number) {
-    const customer = this.customerData.find((customer) => customer.customerID == id);
-    if (customer) {
-      customer.birthday = moment(data.birthday as Date).format('YYYY-MM-DD');
-      customer.name = { first: data.fname, last: data.lname };
-      customer.gender = data.gender;
+    const customer = {} as Customer;
+    customer.birthday = moment(data.birthday as Date).format('YYYY-MM-DD');
+    customer.gender = data.gender;
+    customer.lastContact = '';
+    customer.name = { first: data.fname, last: data.lname };
+    if (data) {
+      customer.customerID = id;
     }
-    return of(customer);
+    return this.httpClient.put(API_ROUTES.UPDATE_CUSTOMER, customer).pipe(map(response => this.handleResponse(response)));;
   }
 
   /**
@@ -70,23 +72,15 @@ export class CustomersService {
    * @param data {any} Customer data
    */
   public addCustomer(data) {
-    let maxId = 0;
-    // Get Max Id
-    this.customerData.forEach(customer => {
-      if (customer.customerID > maxId) {
-        maxId = customer.customerID
-      }
-    });
-
     // Create customer object in order to add it to the source list
     const customer = {} as Customer;
     customer.birthday = moment(data.birthday as Date).format('YYYY-MM-DD');
     customer.gender = data.gender;
     customer.lastContact = '';
     customer.name = { first: data.fname, last: data.lname };
-    customer.customerID = ++maxId; // Work around to simulate backend id generating
-
-    this.customerData.push(customer);
-    return of(customer);
+    return this.httpClient.post(API_ROUTES.CREATE_CUSTOMER, customer).pipe(map(response => this.handleResponse(response)));;
+  }
+  private handleResponse(response: any) {
+    return response.data;
   }
 }

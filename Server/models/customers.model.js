@@ -49,7 +49,6 @@ customersModel.seed = () => {
     Customers.collection.insert(customers, function (err, customer) {
         if (err) {
             console.log('error occured in populating database');
-            console.log(err);
         }
         else {
             console.log('Customers table populated.');
@@ -81,7 +80,7 @@ customersModel.getOne = (id) => {
         results.reject({ status: 'error', error: 'customer Id not supplied.' });
     }
 
-    Customers.findOne({ customerID: id },  (err, dbCustomer)=> {
+    Customers.findOne({ customerID: id }, (err, dbCustomer) => {
         if (err) {
             results.reject(err);
         }
@@ -128,7 +127,7 @@ customersModel.create = (customer) => {
  */
 customersModel.remove = (customerId) => {
     const results = q.defer();
-    Customers.find({ customerID: customerId }).remove((err,dbCustomer) => {
+    Customers.find({ customerID: customerId }).remove((err, dbCustomer) => {
         if (err) {
             results.reject(err);
         }
@@ -140,6 +139,31 @@ customersModel.remove = (customerId) => {
     });
     return results.promise;
 };
+
+/**
+ * Update Customer Data in DB
+ * @param {Customer} body the Customer New Data 
+ */
+customersModel.update = (body) => {
+    const results = q.defer();
+    const customerID = body && body.customerID;
+    if (!customerID) {
+        results.reject({ status: 'error', error: 'customer Id not supplied.' });
+    }
+    Customers.findOneAndUpdate({ customerID }, body, { upsert: false }, (err, dbCustomer) => {
+        if (err) {
+            results.reject(err);
+        }
+
+        if (dbCustomer) {
+            results.resolve(dbCustomer);
+        } else {
+            results.reject({ status: 'error', error: 'Invalid customer supplied.' });
+        }
+    });
+    return results.promise;
+
+}
 
 // Customer Model 
 customersModel.Customers = Customers;

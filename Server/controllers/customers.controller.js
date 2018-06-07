@@ -24,7 +24,6 @@ customerCtrl.create = (req, res) => {
     reqCustomer = req.body || {};
     reqCustomer.customerID = +new Date();
     const customer = new customerModel.Customers(reqCustomer);
-    console.log('customer:', req.body);
     const errors = customer.validateSync() || {};
     const filtered = Object.keys(errors.errors || {}).map((key) => {
         return errors.errors[key] && errors.errors[key].message;
@@ -47,6 +46,12 @@ customerCtrl.remove = (req, res) => {
     }, errorHandler);
 }
 
+customerCtrl.update = (req, res) => {
+    customerModel.update(req.body).then((data) => {
+        res.send(helpers.createResponse(data));
+    }, errorHandler);
+
+}
 
 
 

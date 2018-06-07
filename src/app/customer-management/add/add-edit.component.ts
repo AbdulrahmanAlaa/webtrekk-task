@@ -48,20 +48,29 @@ export class AddEditComponent implements OnInit {
     // Find the Cusomer ID from URL segment    
     this.route.params.subscribe((params) => {
       // Get Single Customer Data      
-      this.sub = this.customerService.getByCustomerID(+params['id']).subscribe(customer => {
-        if (customer) {
-          this.isEditMode = true;
-          this.customer = customer
-        }
-      });
-    });
-
-    // Create Form object with required validation rules
-    this.addCustomerForm = this.formBuilder.group({
-      fname: [this.isEditMode ? this.customer.name.first : '', Validators.required],
-      lname: [this.isEditMode ? this.customer.name.last : '', Validators.required],
-      birthday: [this.isEditMode ? new Date(this.customer.birthday) : new Date()],
-      gender: 'm'
+      const id = +params['id'];
+      if (id) {
+        this.sub = this.customerService.getByCustomerID(+params['id']).subscribe(customer => {
+          if (customer) {
+            this.isEditMode = true;
+            this.customer = customer
+          }
+          // Create Form object with required validation rules
+          this.addCustomerForm = this.formBuilder.group({
+            fname: [this.isEditMode ? this.customer.name.first : '', Validators.required],
+            lname: [this.isEditMode ? this.customer.name.last : '', Validators.required],
+            birthday: [this.isEditMode ? new Date(this.customer.birthday) : new Date()],
+            gender: 'm'
+          });
+        });
+      }else{
+        this.addCustomerForm = this.formBuilder.group({
+          fname: [this.isEditMode ? this.customer.name.first : '', Validators.required],
+          lname: [this.isEditMode ? this.customer.name.last : '', Validators.required],
+          birthday: [this.isEditMode ? new Date(this.customer.birthday) : new Date()],
+          gender: 'm'
+        });
+      }
     });
   }
 
