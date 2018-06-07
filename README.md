@@ -35,6 +35,8 @@ to test any other language please change **defines.ts** `DEFAULT_LANGUAGE` to be
 
 * Created NodeJs server with express and mongoose to handle DB schema validation and seed data you provided as intial value for customers
 
+* Create `RWA` with `bootstrap` with all screens responsive design
+
 # Running the project
 after downloading the project use `npm i` to install the project packages dependency
 then run the following command `ng serve -o --port 5000` the project shall be running on the following url
