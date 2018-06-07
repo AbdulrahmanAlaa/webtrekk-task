@@ -15,8 +15,11 @@ export class AddEditComponent implements OnInit {
   /** defines if we are in edit mode or add mode */
   public isEditMode = false;
 
+  /** show spinner while loading data */
+  public showSpinner = false;
+
   /** holds current customer data */
-  public customer: Customer;
+  public customer: Customer = null;
 
   /** holds current date as intial value for customer birthday*/
   public initialDate = new Date();
@@ -50,10 +53,12 @@ export class AddEditComponent implements OnInit {
       // Get Single Customer Data      
       const id = +params['id'];
       if (id) {
+        this.showSpinner = true;
         this.sub = this.customerService.getByCustomerID(+params['id']).subscribe(customer => {
           if (customer) {
             this.isEditMode = true;
-            this.customer = customer
+            this.customer = customer;
+            this.showSpinner = false;
           }
           // Create Form object with required validation rules
           this.addCustomerForm = this.formBuilder.group({
@@ -63,7 +68,7 @@ export class AddEditComponent implements OnInit {
             gender: 'm'
           });
         });
-      }else{
+      } else {
         this.addCustomerForm = this.formBuilder.group({
           fname: [this.isEditMode ? this.customer.name.first : '', Validators.required],
           lname: [this.isEditMode ? this.customer.name.last : '', Validators.required],
@@ -71,6 +76,8 @@ export class AddEditComponent implements OnInit {
           gender: 'm'
         });
       }
+    }, () => {
+      this.showSpinner = false;
     });
   }
 

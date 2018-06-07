@@ -15,7 +15,7 @@ export class DetailsComponent implements OnInit {
   private sub: Subscription = null;
   
   /** holds current customer data */
-  public customer: Customer;
+  public customer: Customer=null;
 
 
   /*************  Life Cycle Hooks  ***********/

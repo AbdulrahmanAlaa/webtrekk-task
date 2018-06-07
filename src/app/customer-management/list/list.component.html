@@ -34,5 +34,9 @@
     </div>
   </div>
   <!-- Case No Customers Found -->
-  <wt-no-content *ngIf="customers.length <= 0"></wt-no-content>
+  <wt-no-content *ngIf="customers && customers.length <= 0"></wt-no-content>
+  <div *ngIf="!customers" class="loading">
+    <span class="icon-spinner global-spinner"></span>
+  </div>
+
 </section>

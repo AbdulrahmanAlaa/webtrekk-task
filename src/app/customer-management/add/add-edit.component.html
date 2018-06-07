@@ -1,3 +1,4 @@
+
 <form *ngIf="addCustomerForm" [formGroup]="addCustomerForm" (ngSubmit)="submit()" novalidate>
   <div class="row">
     <div class="col-lg-8">
@@ -56,3 +57,6 @@
   <button [routerLink]="['/customers']" class="btn btn-default">{{'common.cancel'|translate}}</button>
   <button type="submit" class="btn btn-dark ml-2">{{isEditMode?('common.edit'|translate):('common.add'|translate)}}</button>
 </form>
+<div *ngIf="!customer && showSpinner" class="loading">
+  <span class="icon-spinner global-spinner"></span>
+</div>

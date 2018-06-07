@@ -9,7 +9,7 @@ import { Customer } from '../../shared/interfaces/customer.interface';
 })
 export class ListComponent implements OnInit {
   /** holds all the customer in the system */
-  public customers = [];
+  public customers = null;
 
   /*************  Life Cycle Hooks  ***********/
   /**

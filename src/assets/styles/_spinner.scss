@@ -1,0 +1,50 @@
+
+@keyframes spinner-animation{
+    0% {transform: translateX(-50%) translateY(-50%) rotate(0deg)}
+    100% {transform: translateX(-50%) translateY(-50%) rotate(360deg)}
+} 
+@mixin spinner-animation(){
+    &:before{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translateX(-50%) translateY(-50%);
+        animation: spinner-animation;
+        animation-duration: 1s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+}
+.spinner.loading{
+    position: fixed;
+    z-index: 999;
+    height: 100vh;
+    width: 100vw;
+    margin: auto;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba(255, 255, 255, 0.4);
+    &.inline-loading{
+        position: relative;
+        width:100%;
+        height: 1.2rem;
+        z-index: 1;
+        margin: 1rem 0;
+        background: none;
+    }
+}
+
+.global-spinner{
+    font-size: 3.5rem;
+    text-align: center;
+    @include spinner-animation();
+}
+
+.inline-spinner{
+    font-size: 1.2rem;
+    text-align: center;
+    @include spinner-animation();
+}
+
