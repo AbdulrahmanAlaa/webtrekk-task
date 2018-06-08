@@ -1,10 +1,8 @@
 //requiring NPM modeles
 const express = require('express');
-const morgan = require('morgan');
 const bodyParser = require('body-parser');
 const path = require('path');
 const mongoose = require('mongoose');
-const cors = require('cors');
 const db = mongoose.connection;
 const app = express();
 const helper = require('./shared/helper');
