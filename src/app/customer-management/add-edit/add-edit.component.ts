@@ -7,7 +7,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { Customer } from '../../shared/interfaces/customer.interface';
 
 @Component({
-  selector: 'wt-add',
+  selector: 'wt-add-edit',
   templateUrl: './add-edit.component.html',
   styleUrls: ['./add-edit.component.scss']
 })
@@ -67,7 +67,7 @@ export class AddEditComponent implements OnInit {
             birthday: [this.isEditMode ? new Date(this.customer.birthday) : new Date()],
             gender: 'm'
           });
-        });
+        },error=>this.router.navigate([pages.customerManagement.path]));
       } else {
         this.addCustomerForm = this.formBuilder.group({
           fname: [this.isEditMode ? this.customer.name.first : '', Validators.required],

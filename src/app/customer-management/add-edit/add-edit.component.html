@@ -6,6 +6,7 @@
     </div>
   </div>
   <div class="row">
+    
     <!-- First Name Part -->
     <div [ngClass]="{'was-validated': addCustomerForm.controls['fname']?.touched && !addCustomerForm.controls['fname']?.valid}" class="form-group col-md-4">
       <label for="fname">{{'customer-management.add.first-name' |translate}}</label>
@@ -15,6 +16,7 @@
         Please enter first name.
       </div>
     </div>
+
     <!-- Last Name Part -->
     <div  [ngClass]=" { 'was-validated': addCustomerForm.controls['lname']?.touched && !addCustomerForm.controls['lname']?.valid}" class="form-group col-md-4">
       <label for="lname">{{'customer-management.add.last-name' |translate}}</label>

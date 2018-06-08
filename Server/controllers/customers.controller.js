@@ -6,7 +6,7 @@ const customerCtrl = {};
  * Handle any error accures during any MongoDB Operations   
  * @param {Object} err  Error Object From mongoose That holds error informations
  */
-const errorHandler = (err) => {
+const errorHandler = (err,res) => {
     res.status(400);
     res.send(err);
 }
@@ -19,7 +19,7 @@ const errorHandler = (err) => {
 customerCtrl.get = (req, res) => {
     customerModel.get().then((data) => {
         res.send(helpers.createResponse(data));
-    }, errorHandler);
+    }, (error)=>errorHandler(error,res));
 };
 
 /**
@@ -31,7 +31,7 @@ customerCtrl.getOne = (req, res) => {
     const customerId = req.params.customerID;
     customerModel.getOne(customerId).then((data) => {
         res.send(helpers.createResponse(data));
-    }, errorHandler);
+    }, (error)=>errorHandler(error,res));
 };
 
 /**
@@ -50,7 +50,7 @@ customerCtrl.create = (req, res) => {
     if (!filtered.length) {
         customerModel.create(customer).then((data) => {
             res.send(helpers.createResponse(data));
-        }, errorHandler);
+        }, (error)=>errorHandler(error,res));
     } else {
         res.status(400);
         res.send(filtered);
@@ -66,7 +66,7 @@ customerCtrl.remove = (req, res) => {
     const customerId = req.params.customerID;
     customerModel.remove(customerId).then((data) => {
         res.send(helpers.createResponse(data));
-    }, errorHandler);
+    }, (error)=>errorHandler(error,res));
 }
 
 /**
@@ -77,8 +77,7 @@ customerCtrl.remove = (req, res) => {
 customerCtrl.update = (req, res) => {
     customerModel.update(req.body).then((data) => {
         res.send(helpers.createResponse(data));
-    }, errorHandler);
-
+    }, (error)=>errorHandler(error,res));
 }
 
 module.exports = customerCtrl;

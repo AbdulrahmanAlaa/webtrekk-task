@@ -39,7 +39,7 @@ export class DetailsComponent implements OnInit {
         if (customer) {
           this.customer = customer;
         }
-      });
+      },error=>this.router.navigate([pages.customerManagement.path]));
     });
   }
 
