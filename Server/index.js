@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 
 
 
-// Intilaize Application APIs routes
+// Intilaize Application APIs Routes
 const allroutes = require('./routes');
 app.use('/api',allroutes);
 

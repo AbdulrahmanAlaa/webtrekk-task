@@ -2,7 +2,7 @@ const customers = require('../../controllers/customers.controller');
 const express = require('express');
 const router = express.Router();
 
-// Customers Module routes
+/** Customers Module Routes */
 router.get('/', customers.get);
 router.get('/:customerID', customers.getOne);
 router.post('/', customers.create);

@@ -2,17 +2,31 @@ const customerModel = require('../models/customers.model');
 const helpers = require('../shared/helper');
 const customerCtrl = {};
 
+/**
+ * Handle any error accures during any MongoDB Operations   
+ * @param {Object} err  Error Object From mongoose That holds error informations
+ */
 const errorHandler = (err) => {
     res.status(400);
     res.send(err);
 }
 
+/**
+ * Get All Customers from MongoDB
+ * @param {Request} req contains Request informations
+ * @param {Response} res contains Response informations
+ */
 customerCtrl.get = (req, res) => {
     customerModel.get().then((data) => {
         res.send(helpers.createResponse(data));
     }, errorHandler);
 };
 
+/**
+ * Get Single Customer from MongoDB
+ * @param {Request} req contains Request informations
+ * @param {Response} res contains Response informations
+ */
 customerCtrl.getOne = (req, res) => {
     const customerId = req.params.customerID;
     customerModel.getOne(customerId).then((data) => {
@@ -20,6 +34,11 @@ customerCtrl.getOne = (req, res) => {
     }, errorHandler);
 };
 
+/**
+ * Add Single Customer to MongoDB after validating it
+ * @param {Request} req contains Request informations
+ * @param {Response} res contains Response informations
+ */
 customerCtrl.create = (req, res) => {
     reqCustomer = req.body || {};
     reqCustomer.customerID = +new Date();
@@ -38,7 +57,11 @@ customerCtrl.create = (req, res) => {
     }
 }
 
-
+/**
+ * Remove Customer from MongoDB by it's Id
+ * @param {Request} req contains Request informations
+ * @param {Response} res contains Response informations
+ */
 customerCtrl.remove = (req, res) => {
     const customerId = req.params.customerID;
     customerModel.remove(customerId).then((data) => {
@@ -46,13 +69,16 @@ customerCtrl.remove = (req, res) => {
     }, errorHandler);
 }
 
+/**
+ * Update Single Customer in MongoDB
+ * @param {Request} req contains Request informations
+ * @param {Response} res contains Response informations
+ */
 customerCtrl.update = (req, res) => {
     customerModel.update(req.body).then((data) => {
         res.send(helpers.createResponse(data));
     }, errorHandler);
 
 }
-
-
 
 module.exports = customerCtrl;

@@ -39,7 +39,7 @@ const customersSchema = new mongoose.Schema({
 /** Initlizing interface object of this model */
 var customersModel = {};
 
-
+/** Customers Collection Model Definition*/
 const Customers = mongoose.model('customers', customersSchema);
 
 
