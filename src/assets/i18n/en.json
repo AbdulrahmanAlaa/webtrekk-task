@@ -1,30 +1,33 @@
 {
-    "common":{
-        "cancel":"Cancel",
-        "add":"Add",
-        "edit":"Save",
-        "delete":"Delete"
+    "common": {
+        "cancel": "Cancel",
+        "add": "Add",
+        "edit": "Save",
+        "delete": "Delete"
     },
-    "project-info":{
-        "name":"WebTrekk Customer Portal"
+    "project-info": {
+        "name": "WebTrekk Customer Portal"
     },
-    "customer-management":{
-        "list":{
-            "main-title":"Our Customers",
-            "birth-date":"Birthdate :",
-            "tool-tip":{
-                "add":"Add new customer",
-                "edit":"Edit Customer",
-                "delete":"Delete Customer"
+    "customer-management": {
+        "list": {
+            "main-title": "Our Customers",
+            "birth-date": "Birthdate :",
+            "tool-tip": {
+                "add": "Add new customer",
+                "edit": "Edit Customer",
+                "delete": "Delete Customer"
             }
         },
-        "add":{
-            "first-name":"First Name",
-            "last-name":"Last Name",
-            "birthday":"Birthday",
-            "gender":"Gender",
-            "male":"Male",
-            "female":"Female"
+        "add": {
+            "first-name": "First Name",
+            "last-name": "Last Name",
+            "birthday": "Birthday",
+            "gender": "Gender",
+            "male": "Male",
+            "female": "Female"
+        },
+        "delete": {
+            "message": "Are you sure you want to delete the following Customer ?"
         }
     }
 }

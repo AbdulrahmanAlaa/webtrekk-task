@@ -7,6 +7,7 @@ import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { SingleCardComponent } from '../single-card/single-card.component';
 
 describe('ListComponent', () => {
   let component: ListComponent;
@@ -26,7 +27,7 @@ describe('ListComponent', () => {
           }
         })
       ],
-      declarations: [NoContentComponent, ListComponent ]
+      declarations: [NoContentComponent, ListComponent,SingleCardComponent ]
     })
     .compileComponents();
   }));

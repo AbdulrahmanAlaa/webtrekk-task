@@ -7,8 +7,6 @@ const mongoose = require('mongoose');
 const cors = require('cors');
 const db = mongoose.connection;
 const app = express();
-const router = express.Router();
-
 const helper = require('./shared/helper');
 
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -16,14 +14,13 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
 
-// Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/../dist'));
 
 // Intilaize Application APIs routes
-const routes = require('./routes');
-routes(router);
-app.use('/api',router);
+const allroutes = require('./routes');
+app.use('/api',allroutes);
 
+// Serve only the static files form the dist directory
+app.use(express.static(__dirname + '/../dist'));
 
 // Log DataBase Error
 db.on('error', console.error);

@@ -11,6 +11,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NoContentComponent } from './no-content/no-content.component';
 import { AddEditComponent } from './add/add-edit.component';
 import { DetailsComponent } from './details/details.component';
+import { SingleCardComponent } from './single-card/single-card.component';
 
 /**
  * the Home Module decorator that contains Customer Management Components Services ....
@@ -26,6 +27,6 @@ import { DetailsComponent } from './details/details.component';
     CommonModule,
     CustomerManagementRoutingModule
   ],
-  declarations: [ListComponent, AddEditComponent, NoContentComponent, DetailsComponent]
+  declarations: [ListComponent, AddEditComponent, NoContentComponent, DetailsComponent, SingleCardComponent]
 })
 export class CustomerManagementModule { }

@@ -1,12 +1,13 @@
 const customers = require('../../controllers/customers.controller');
-const routes = (app) => {
-    // Customers Module routes
-    app.get('/customers', customers.get);
-    app.get('/customers/:customerID', customers.getOne);
-    app.post('/customers', customers.create);
-    app.delete('/customers/:customerID', customers.remove);
-    app.put('/customers',customers.update)
-}
+const express = require('express');
+const router = express.Router();
+
+// Customers Module routes
+router.get('/', customers.get);
+router.get('/:customerID', customers.getOne);
+router.post('/', customers.create);
+router.delete('/:customerID', customers.remove);
+router.put('/', customers.update);
 
 
-module.exports = routes;
+module.exports = router;

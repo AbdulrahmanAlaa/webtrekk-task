@@ -25,6 +25,9 @@
             "gender":"Geschlecht",
             "male":"Männlich",
             "female":"Weiblich"
+        },
+        "delete": {
+            "message": "Möchten Sie den folgenden Kunden wirklich löschen?"
         }
     }
 }
