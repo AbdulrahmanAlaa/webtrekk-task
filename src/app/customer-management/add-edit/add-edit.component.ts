@@ -49,7 +49,7 @@ export class AddEditComponent implements OnInit {
  * @param formBuilder  Helps and creating and validating Forms using reactive way
  */
   constructor(
-    private translateService:TranslateService,
+    private translateService: TranslateService,
     private route: ActivatedRoute,
     private customerService: CustomersService,
     private formBuilder: FormBuilder,
@@ -109,11 +109,14 @@ export class AddEditComponent implements OnInit {
   //     Public Functions
   //-------------------------------
 
+  /**
+   * Update form Gender with selected one
+   * @param value w | m represents the Gender Male/Female
+   */
   public setGender(value: string) {
     this.addCustomerForm.controls.gender.setValue(value);
     if (this.customerImageURL && this.customerImageURL.match(/male.png|female.png/))
       this.customerImageURL = this.addCustomerForm.controls.gender.value == 'm' ? 'assets/images/male.png' : 'assets/images/female.png';
-
   }
 
   /**
@@ -125,15 +128,19 @@ export class AddEditComponent implements OnInit {
     const input = event.target as HTMLInputElement || event.srcElement as HTMLInputElement;
     if (input.files && input.files[0] && FileReader) {
 
-      // Validate Image 
-      var Extension = input.value.substring(input.value.lastIndexOf('.') + 1).toLowerCase();
-      if (Extension == "gif" || Extension == "png" || Extension == "jpeg" || Extension == "jpg") {
-        var size = input.files[0].size;
-        console.log(input.files[0].size)
+      // Validate image 
+      const extension = input.value.substring(input.value.lastIndexOf('.') + 1).toLowerCase();
+      if (this.isValidExtension(extension)) {
+
+        const size = input.files[0].size;
+
         if (size > (1024 * 500)) {
+
           this.imageError = this.translateService.instant('common.errors.image-size');
+
           return;
         } else {
+          // reading the image in memory with base64 in order to be displayed to the user
           const reader = new FileReader();
 
           reader.readAsDataURL(input.files[0]);
@@ -144,6 +151,7 @@ export class AddEditComponent implements OnInit {
           };
         }
       } else {
+        // Case not valid extension
         this.imageError = this.translateService.instant('common.errors.image-ext');
       }
 
@@ -153,12 +161,14 @@ export class AddEditComponent implements OnInit {
     }
   }
 
+
   /**
    * Send Customer data to server in order to update/Add it
    */
   public submit() {
     this.submitted = true;
     if (this.addCustomerForm.valid) {
+      // Holds customer data in order to be sent to the service
       const data = {
         ...this.addCustomerForm.value,
         file: this.customerimage.nativeElement.files[0] ? {
@@ -174,9 +184,21 @@ export class AddEditComponent implements OnInit {
     }
   }
 
+  //-------------------------------
+  //     Private Functions
+  //-------------------------------
+
   /** handle navigation to list view */
   private handleSuccess(customer) {
     this.router.navigate([pages.customerManagement.path]);
+  }
+
+  /**
+   *  Check extention matches the valid extenstion or not 
+   * @param extension 
+   */
+  private isValidExtension(extension: string) {
+    return extension == "gif" || extension == "png" || extension == "jpeg" || extension == "jpg";
   }
 
 }

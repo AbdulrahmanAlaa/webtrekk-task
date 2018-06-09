@@ -20,11 +20,11 @@ export class DetailsComponent implements OnInit {
 
   /*************  Life Cycle Hooks  ***********/
   /**
-* parameters passed by angular Dependency Injection 
-* @param customersService  contains the CRUD operation to handle customers data 
-* @param route  contains current active route data and paramenters
-* @param router  Helps and navigating between routes 
-*/
+    * parameters passed by angular Dependency Injection 
+    * @param customersService  contains the CRUD operation to handle customers data 
+    * @param route  contains current active route data and paramenters
+    * @param router  Helps and navigating between routes 
+    */
   constructor(
     private route: ActivatedRoute,
     private customerService: CustomersService,
