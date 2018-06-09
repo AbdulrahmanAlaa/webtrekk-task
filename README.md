@@ -18,8 +18,7 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 * Unit Testing: 
     can be tested using `ng test --code-coverage` then navigate to `coverage/index.html`
 
-* Multi language support
-to test any other language please change **defines.ts** `DEFAULT_LANGUAGE` to be `ar` 
+* Multi language support to test any other language 
 
 * Using `ngx-bootstrap` with overriding the bootstrap `scss` source code for better look and feel
 
