@@ -1,7 +1,7 @@
 # Table Of Contents
 *  [WebtrekkTask](#WebtrekkTask)
-*  [Features implemented](#Features%20implemented)
-*  [Running the project](#Running%20the%20project)
+*  [Features implemented](#features-implemented)
+*  [Running the project](#running-the-project)
 
 
 
