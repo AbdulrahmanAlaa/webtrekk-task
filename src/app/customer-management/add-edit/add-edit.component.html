@@ -1,64 +1,74 @@
-
-<form *ngIf="addCustomerForm" [formGroup]="addCustomerForm" (ngSubmit)="submit()" novalidate>
-  <div class="row">
-    <div class="col-lg-8">
-      <img width="250px" src="{{ addCustomerForm.controls.gender.value == 'm'?'assets/images/male.png':'assets/images/female.png'}}" class="rounded-circle" alt="">
+<div class="add_edit">
+  <form *ngIf="addCustomerForm" [formGroup]="addCustomerForm" (ngSubmit)="submit()" novalidate>
+    <div class="row">
+      <div class="col-lg-8">
+        <p class="text-center add_edit__image_error"><small>{{imageError}}</small></p>
+        <img  width="250px" [src]="customerImageURL"
+          class="add_edit__user_image rounded-circle" alt="">
+        <label class="add_edit__block" for="customerimage">
+          <span placement="bottom" [tooltip]="'customer-management.add.image'|translate" class="add_edit__uploader-icon rounded-circle icon-add"></span>
+        </label>
+        <input #customerimage  (change)="customerImageChanged($event)" id="customerimage" type="file">
+      </div>
     </div>
-  </div>
-  <div class="row">
-    
-    <!-- First Name Part -->
-    <div [ngClass]="{'was-validated': addCustomerForm.controls['fname']?.touched && !addCustomerForm.controls['fname']?.valid}" class="form-group col-md-4">
-      <label for="fname">{{'customer-management.add.first-name' |translate}}</label>
-      <input formControlName="fname" type="text" class="form-control" id="fname" [placeholder]="'customer-management.add.first-name' |translate"
-        required>
-      <div class="invalid-feedback">
-        Please enter first name.
+    <div class="row">
+
+      <!-- First Name Part -->
+      <div [ngClass]="{'was-validated': (submitted || addCustomerForm.controls['fname']?.touched) && !addCustomerForm.controls['fname']?.valid}"
+        class="form-group col-md-4">
+        <label for="fname">{{'customer-management.add.first-name' |translate}} *</label>
+        <input formControlName="fname" type="text" class="form-control" id="fname" [placeholder]="'customer-management.add.first-name' |translate"
+          required>
+        <div class="invalid-feedback">
+          Please enter first name.
+        </div>
+      </div>
+
+      <!-- Last Name Part -->
+      <div [ngClass]=" { 'was-validated': (submitted||addCustomerForm.controls['lname']?.touched) && !addCustomerForm.controls['lname']?.valid}"
+        class="form-group col-md-4">
+        <label for="lname">{{'customer-management.add.last-name' |translate}} *</label>
+        <input formControlName="lname" type="text" class="form-control" id="lname" [placeholder]="'customer-management.add.last-name' |translate"
+          required>
+        <div class="invalid-feedback">
+          Please enter last name.
+        </div>
+      </div>
+    </div>
+    <!-- BirthDate Part -->
+    <div class="row">
+      <div class="form-group col-md-4">
+        <label for="birthday">{{'customer-management.add.birthday' |translate}}</label>
+        <input formControlName="birthday" id="birthday" class="form-control" [bsConfig]="{ containerClass: 'theme-default' }" bsDatepicker
+          [bsValue]="initialDate">
+      </div>
+    </div>
+    <!-- Gender Part -->
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label class="mr-3" for="gender">{{'customer-management.add.gender' |translate}}</label>
+        <div class="btn-group" dropdown>
+          <button id="gender" dropdownToggle type="button" class="btn btn-default dropdown-toggle" aria-controls="dropdown-basic">
+            {{ addCustomerForm.controls.gender.value == 'm'?('customer-management.add.male' |translate):('customer-management.add.female'
+            |translate)}}
+            <span class="caret"></span>
+          </button>
+          <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="gender">
+            <li role="menuitem">
+              <a (click)="setGender('m')" class="dropdown-item">{{'customer-management.add.male' |translate}}</a>
+            </li>
+            <li role="menuitem">
+              <a (click)="setGender('w')" class="dropdown-item">{{'customer-management.add.female' |translate}}</a>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
 
-    <!-- Last Name Part -->
-    <div  [ngClass]=" { 'was-validated': addCustomerForm.controls['lname']?.touched && !addCustomerForm.controls['lname']?.valid}" class="form-group col-md-4">
-      <label for="lname">{{'customer-management.add.last-name' |translate}}</label>
-      <input formControlName="lname" type="text" class="form-control" id="lname" [placeholder]="'customer-management.add.last-name' |translate" required>
-      <div class="invalid-feedback">
-        Please enter last name.
-      </div>
-    </div>
+    <button [routerLink]="['/customers']" class="btn btn-default">{{'common.cancel'|translate}}</button>
+    <button type="submit" class="btn btn-dark ml-2">{{isEditMode?('common.edit'|translate):('common.add'|translate)}}</button>
+  </form>
+  <div *ngIf="!customer && showSpinner" class="loading">
+    <span class="icon-spinner global-spinner"></span>
   </div>
-  <!-- BirthDate Part -->
-  <div class="row">
-    <div class="form-group col-md-4">
-      <label for="birthday">{{'customer-management.add.birthday' |translate}}</label>
-      <input formControlName="birthday" id="birthday" class="form-control" [bsConfig]="{ containerClass: 'theme-default' }" bsDatepicker
-        [bsValue]="initialDate">
-    </div>
-  </div>
-  <!-- Gender Part -->
-  <div class="row">
-    <div class="form-group col-md-6">
-      <label class="mr-3" for="gender">{{'customer-management.add.gender' |translate}}</label>
-      <div class="btn-group" dropdown>
-        <button id="gender" dropdownToggle type="button" class="btn btn-default dropdown-toggle" aria-controls="dropdown-basic">
-          {{ addCustomerForm.controls.gender.value == 'm'?('customer-management.add.male' |translate):('customer-management.add.female'
-          |translate)}}
-          <span class="caret"></span>
-        </button>
-        <ul id="dropdown-basic" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="gender">
-          <li role="menuitem">
-            <a (click)="setGender('m')" class="dropdown-item">{{'customer-management.add.male' |translate}}</a>
-          </li>
-          <li role="menuitem">
-            <a (click)="setGender('w')" class="dropdown-item">{{'customer-management.add.female' |translate}}</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </div>
-
-  <button [routerLink]="['/customers']" class="btn btn-default">{{'common.cancel'|translate}}</button>
-  <button type="submit" class="btn btn-dark ml-2">{{isEditMode?('common.edit'|translate):('common.add'|translate)}}</button>
-</form>
-<div *ngIf="!customer && showSpinner" class="loading">
-  <span class="icon-spinner global-spinner"></span>
 </div>

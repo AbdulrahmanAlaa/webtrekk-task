@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Customer } from '../../shared/interfaces/customer.interface';
 
 @Component({
@@ -6,9 +6,13 @@ import { Customer } from '../../shared/interfaces/customer.interface';
   templateUrl: './single-card.component.html',
   styleUrls: ['./single-card.component.scss']
 })
-export class SingleCardComponent  {
-
+export class SingleCardComponent implements OnInit {
   @Input()
   public customer: Customer;
+  ngOnInit(): void {
+    this.customer.customerImage = this.customer.customerImage || { name: '', value: '' };
+    this.customer.customerImage.value = this.customer.customerImage.value? this.customer.customerImage.value:this.customer.gender == 'm' ? 'assets/images/male.png' : 'assets/images/female.png'
+  }
+
 
 }

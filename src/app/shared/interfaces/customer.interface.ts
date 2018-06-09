@@ -8,4 +8,8 @@ export interface Customer{
     gender: string;
     lastContact: string;
     customerLifetimeValue: number;
+    customerImage?:{
+        name:string,
+        value:string
+    }
 }

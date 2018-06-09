@@ -9,13 +9,13 @@ const helper = require('./shared/helper');
 
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json.
-app.use(bodyParser.json());
+app.use(bodyParser.json({ limit: '5mb', extended: true }, ));
 
 
 
 // Intilaize Application APIs Routes
 const allroutes = require('./routes');
-app.use('/api',allroutes);
+app.use('/api', allroutes);
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/../dist'));
@@ -33,7 +33,7 @@ mongoose.connect('mongodb://admin:admin123@ds147180.mlab.com:47180/webtrekk');
 helper.populateDb();
 
 app.get('/*', function (req, res) {
-    const pathName = (req.path.match(/customer/) || req.path === '/')? 'index.html':req.path;
+    const pathName = (req.path.match(/customer/) || req.path === '/') ? 'index.html' : req.path;
     res.sendFile(path.join(__dirname + '/../dist/webtrekk-task/' + pathName));
 });
 

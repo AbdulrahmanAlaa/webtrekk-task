@@ -3,7 +3,11 @@
         "cancel": "Cancel",
         "add": "Add",
         "edit": "Save",
-        "delete": "Delete"
+        "delete": "Delete",
+        "errors":{
+            "image-size":"Maximum file size exceeded 500 KB",
+            "image-ext":"invalid extension, Supported images are gif,png,jpg,jpeg"
+        }
     },
     "project-info": {
         "name": "WebTrekk Customer Portal"
@@ -24,7 +28,8 @@
             "birthday": "Birthday",
             "gender": "Gender",
             "male": "Male",
-            "female": "Female"
+            "female": "Female",
+            "image":"upload customer image (optional)"
         },
         "delete": {
             "message": "Are you sure you want to delete the following Customer ?"

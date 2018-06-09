@@ -13,9 +13,9 @@ import { Customer } from '../../shared/interfaces/customer.interface';
 export class DetailsComponent implements OnInit {
   /** holds the subscription intfo in order to be deleted to clear the memory */
   private sub: Subscription = null;
-  
+
   /** holds current customer data */
-  public customer: Customer=null;
+  public customer: Customer = null;
 
 
   /*************  Life Cycle Hooks  ***********/
@@ -38,8 +38,10 @@ export class DetailsComponent implements OnInit {
       this.sub = this.customerService.getByCustomerID(+params['id']).subscribe(customer => {
         if (customer) {
           this.customer = customer;
+          this.customer.customerImage = this.customer.customerImage || { name: '', value: '' };
+          this.customer.customerImage.value = this.customer.customerImage.value ? this.customer.customerImage.value : this.customer.gender == 'm' ? 'assets/images/male.png' : 'assets/images/female.png'
         }
-      },error=>this.router.navigate([pages.customerManagement.path]));
+      }, error => this.router.navigate([pages.customerManagement.path]));
     });
   }
 

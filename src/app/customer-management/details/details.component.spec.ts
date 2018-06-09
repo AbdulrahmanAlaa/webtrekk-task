@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { DetailsComponent } from './details.component';
-import { HttpClientModule ,HttpClient} from '@angular/common/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
@@ -13,10 +13,10 @@ describe('DetailsComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[
-        HttpClientModule,        
+      imports: [
+        HttpClientModule,
         RouterTestingModule,
-        TooltipModule.forRoot(),        
+        TooltipModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -25,23 +25,24 @@ describe('DetailsComponent', () => {
           }
         })
       ],
-      declarations: [ DetailsComponent ]
+      declarations: [DetailsComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(DetailsComponent);
     component = fixture.componentInstance;
     component.customer = {
-      birthday:'1992-1-1',
-      customerID:100,
-      customerLifetimeValue:0,
-      gender:'m',
-      lastContact:'',
-      name:{
-        first:'any',last:'last'
-      }
+      birthday: '1992-1-1',
+      customerID: 100,
+      customerLifetimeValue: 0,
+      gender: 'm',
+      lastContact: '',
+      name: {
+        first: 'any', last: 'last'
+      },
+      customerImage: { name: '', value: '' }
     }
     fixture.detectChanges();
   });

@@ -61,10 +61,13 @@ export class CustomersService {
     customer.gender = data.gender;
     customer.lastContact = '';
     customer.name = { first: data.fname, last: data.lname };
-    if (data) {
-      customer.customerID = id;
+    customer.customerID = id;
+    if (data.file) {
+      customer.customerImage = { name: data.file.name, value: data.file.value };
+    } else {
+      customer.customerImage = { name: null, value: null };
     }
-    return this.httpClient.put(API_ROUTES.UPDATE_CUSTOMER, customer).pipe(map(response => this.handleResponse(response)));;
+    return this.httpClient.put(API_ROUTES.UPDATE_CUSTOMER, customer).pipe(map(response => this.handleResponse(response)));
   }
 
   /**
@@ -78,6 +81,11 @@ export class CustomersService {
     customer.gender = data.gender;
     customer.lastContact = '';
     customer.name = { first: data.fname, last: data.lname };
+    if (data.file) {
+      customer.customerImage = { name: data.file.name, value: data.file.value };
+    } else {
+      customer.customerImage = { name: null, value: null };
+    }
     return this.httpClient.post(API_ROUTES.CREATE_CUSTOMER, customer).pipe(map(response => this.handleResponse(response)));;
   }
   private handleResponse(response: any) {

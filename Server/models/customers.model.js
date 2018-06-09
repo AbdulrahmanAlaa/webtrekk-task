@@ -33,6 +33,9 @@ const customersSchema = new mongoose.Schema({
     customerLifetimeValue: {
         type: Number,
         required: false
+    },
+    customerImage: {
+        name: String, value: String
     }
 });
 

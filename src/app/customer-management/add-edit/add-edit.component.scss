@@ -1,4 +1,41 @@
-img{
-    display: block;
-    margin: auto;
-} 
+@import '../../../assets/styles/colors';
+.add_edit{
+    &__image_error{
+        color:$font-red;
+    }
+
+    &__user_image{
+        display: block;
+        margin: auto;
+    } 
+    &__uploader-icon{
+        display: block;
+        text-align: center;
+        font-size: 55px;
+        position: relative;
+        top: -80px;
+        color: white;
+        
+    }
+    &__block{
+        display: block;
+    }
+    
+    .icon-add::before{
+        border: 5px solid orange;
+        border-radius: 50%;
+    }
+    
+    .icon-add:hover::before{
+        border: 8px solid orange !important;
+    }
+    
+    input[type=file] {
+        width: 0.1px;
+        height: 0.1px;
+        opacity: 0;
+        overflow: hidden;
+        position: absolute;
+        z-index: -1;
+    }
+}
