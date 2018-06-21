@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-body">
     <div class="text-center">
-      <img  [src]="customer.customerImage.value" width="200px"  class="rounded-circle" alt="">
+      <img  [src]="customer.customerImage.value"   class="rounded-circle" alt="">
     </div>
     <h5 class="card-title text-center"> {{customer.name.first}} {{customer.name.last}} <span [ngClass]="{'icon-male-gender': customer.gender == 'm','icon-female-gender': customer.gender == 'w'}"></span></h5>
     <div class="card-text">
