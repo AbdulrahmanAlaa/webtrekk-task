@@ -10,20 +10,20 @@ import { AddEditComponent } from './add-edit/add-edit.component';
  */
 const routes: Routes = [
   {
-    path:pages.customerManagement.children.list.path,
-    component:ListComponent
+    path: pages.customerManagement.children.list.path,
+    component: ListComponent
   },
   {
-    path:pages.customerManagement.children.add.path,
-    component:AddEditComponent
+    path: pages.customerManagement.children.add.path,
+    component: AddEditComponent
   },
   {
-    path:pages.customerManagement.children.delete.path,
-    component:DetailsComponent
+    path: pages.customerManagement.children.delete.path,
+    component: DetailsComponent
   },
   {
-    path:pages.customerManagement.children.edit.path,
-    component:AddEditComponent
+    path: pages.customerManagement.children.edit.path,
+    component: AddEditComponent
   }
 ];
 

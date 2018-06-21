@@ -8,8 +8,8 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
   /**
-     * parameters passed by angular Dependency Injection 
-     * @param translate  
+     * parameters passed by angular Dependency Injection
+     * @param translate
      */
   constructor(private translate: TranslateService
   ) { }
@@ -20,7 +20,7 @@ export class NavbarComponent {
    * @param language {string} as de or en represents language name
    */
   languageChanged(language) {
-    //Configure the Language to be English by default
+    // Configure the Language to be English by default
     this.translate.use(language);
   }
 }

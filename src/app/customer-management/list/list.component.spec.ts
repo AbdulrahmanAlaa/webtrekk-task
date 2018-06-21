@@ -15,10 +15,10 @@ describe('ListComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[
-        HttpClientModule,        
+      imports: [
+        HttpClientModule,
         RouterTestingModule,
-        TooltipModule.forRoot(),        
+        TooltipModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,
@@ -27,7 +27,7 @@ describe('ListComponent', () => {
           }
         })
       ],
-      declarations: [NoContentComponent, ListComponent,SingleCardComponent ]
+      declarations: [NoContentComponent, ListComponent, SingleCardComponent ]
     })
     .compileComponents();
   }));

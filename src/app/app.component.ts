@@ -9,8 +9,8 @@ import { LANGUAGES, DEFAULT_LANGUAGE } from './config/defines';
 })
 export class AppComponent {
   /**
-   * parameters passed by angular Dependency Injection 
-   * @param translate  
+   * parameters passed by angular Dependency Injection
+   * @param translate
    */
   constructor(
     private translate: TranslateService

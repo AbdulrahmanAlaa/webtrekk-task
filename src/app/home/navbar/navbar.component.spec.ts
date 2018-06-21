@@ -14,10 +14,10 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      imports:[
-        HttpClientModule,        
+      imports: [
+        HttpClientModule,
         RouterTestingModule,
-        TooltipModule.forRoot(),        
+        TooltipModule.forRoot(),
         TranslateModule.forRoot({
           loader: {
             provide: TranslateLoader,

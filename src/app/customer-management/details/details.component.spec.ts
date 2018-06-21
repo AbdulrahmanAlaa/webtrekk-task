@@ -43,7 +43,7 @@ describe('DetailsComponent', () => {
         first: 'any', last: 'last'
       },
       customerImage: { name: '', value: '' }
-    }
+    };
     fixture.detectChanges();
   });
 

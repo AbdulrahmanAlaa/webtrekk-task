@@ -17,29 +17,29 @@ export class CustomersService {
 
   /*************  Life Cycle Hooks  ***********/
   /**
-   * parameters passed by angular Dependecy Injection 
+   * parameters passed by angular Dependecy Injection
    * @param httpClient Help creating ajax calls to backend
    */
   constructor(private httpClient: HttpClient) {
   }
 
-  //-------------------------------
+  // -------------------------------
   //     Public Functions
-  //-------------------------------
+  // -------------------------------
 
   /**
-   * Get All customers 
+   * Get All customers
    */
   public getCustomers(): Observable<any> {
     return this.httpClient.get(API_ROUTES.GET_CUSTOMERS).pipe(map(response => this.handleResponse(response)));
   }
 
   /**
-   * Get Single Customer using customer id 
-   * @param id {number} Customer Id 
+   * Get Single Customer using customer id
+   * @param id {number} Customer Id
    */
   public getByCustomerID(id: number): Observable<any> {
-    return this.httpClient.get(API_ROUTES.GET_CUSTOMER_BY_ID(id)).pipe(map(response => this.handleResponse(response)));;
+    return this.httpClient.get(API_ROUTES.GET_CUSTOMER_BY_ID(id)).pipe(map(response => this.handleResponse(response)));
   }
 
   /**
@@ -47,7 +47,7 @@ export class CustomersService {
    * @param customerId {number} customer identifier
    */
   public deleteCustomer(customerId: number) {
-    return this.httpClient.delete(API_ROUTES.DELETE_CUSTOMER_BY_ID(customerId)).pipe(map(response => this.handleResponse(response)));;
+    return this.httpClient.delete(API_ROUTES.DELETE_CUSTOMER_BY_ID(customerId)).pipe(map(response => this.handleResponse(response)));
   }
 
   /**
@@ -86,7 +86,7 @@ export class CustomersService {
     } else {
       customer.customerImage = { name: null, value: null };
     }
-    return this.httpClient.post(API_ROUTES.CREATE_CUSTOMER, customer).pipe(map(response => this.handleResponse(response)));;
+    return this.httpClient.post(API_ROUTES.CREATE_CUSTOMER, customer).pipe(map(response => this.handleResponse(response)));
   }
   private handleResponse(response: any) {
     return response.data;

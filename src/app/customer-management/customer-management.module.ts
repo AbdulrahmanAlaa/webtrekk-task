@@ -21,8 +21,8 @@ import { SingleCardComponent } from './single-card/single-card.component';
     FormsModule,
     ReactiveFormsModule,
     BsDropdownModule.forRoot(),
-    TooltipModule.forRoot(),  
-    BsDatepickerModule.forRoot(),  
+    TooltipModule.forRoot(),
+    BsDatepickerModule.forRoot(),
     TranslateModule,
     CommonModule,
     CustomerManagementRoutingModule

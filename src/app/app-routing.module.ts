@@ -22,7 +22,7 @@ const routes: Routes = [
 ];
 
 /**
- * the App Route decorator that contains needed modules and routs 
+ * the App Route decorator that contains needed modules and routs
  */
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

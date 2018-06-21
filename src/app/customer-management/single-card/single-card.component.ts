@@ -11,7 +11,9 @@ export class SingleCardComponent implements OnInit {
   public customer: Customer;
   ngOnInit(): void {
     this.customer.customerImage = this.customer.customerImage || { name: '', value: '' };
-    this.customer.customerImage.value = this.customer.customerImage.value? this.customer.customerImage.value:this.customer.gender == 'm' ? 'assets/images/male.png' : 'assets/images/female.png'
+    this.customer.customerImage.value = this.customer.customerImage.value ?
+      this.customer.customerImage.value : this.customer.gender === 'm' ?
+        'assets/images/male.png' : 'assets/images/female.png';
   }
 
 

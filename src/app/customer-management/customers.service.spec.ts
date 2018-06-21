@@ -9,7 +9,7 @@ describe('CustomersService', () => {
   let injector: TestBed;
   let service: CustomersService;
   let httpMock: HttpTestingController;
-  
+
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
@@ -26,8 +26,8 @@ describe('CustomersService', () => {
     httpMock.verify();
   });
 
-  it('should be created', inject([CustomersService], (service: CustomersService) => {
-    expect(service).toBeTruthy();
+  it('should be created', inject([CustomersService], (customersService: CustomersService) => {
+    expect(customersService).toBeTruthy();
   }));
 
   it('should Get customers from DB', () => {
@@ -69,7 +69,7 @@ describe('CustomersService', () => {
 
     const req = httpMock.expectOne(API_ROUTES.GET_CUSTOMERS);
     req.flush(dummyCustomers);
-    expect(req.request.method).toBe("GET");
+    expect(req.request.method).toBe('GET');
   });
 
   it('should GetSingle customer from DB', () => {
@@ -96,7 +96,7 @@ describe('CustomersService', () => {
 
     const req = httpMock.expectOne(API_ROUTES.GET_CUSTOMER_BY_ID(1));
     req.flush(dummyCustomers);
-    expect(req.request.method).toBe("GET");
+    expect(req.request.method).toBe('GET');
   });
 
   it('should Add customer To DB', () => {
@@ -118,17 +118,17 @@ describe('CustomersService', () => {
     };
 
     service.addCustomer({
-      "fname": "Ahmed",
-      "lname": "Ali",
-      "birthday": new Date(),
-      "gender": "m"
+      'fname': 'Ahmed',
+      'lname': 'Ali',
+      'birthday': new Date(),
+      'gender': 'm'
     }).subscribe((customer: Customer) => {
       expect(customer.customerID).toEqual(1);
     });
 
     const req = httpMock.expectOne(API_ROUTES.CREATE_CUSTOMER);
     req.flush(dummyCustomers);
-    expect(req.request.method).toBe("POST");
+    expect(req.request.method).toBe('POST');
   });
 
   it('should Delete customer from DB', () => {
@@ -155,7 +155,7 @@ describe('CustomersService', () => {
 
     const req = httpMock.expectOne(API_ROUTES.DELETE_CUSTOMER_BY_ID(1));
     req.flush(dummyCustomers);
-    expect(req.request.method).toBe("DELETE");
+    expect(req.request.method).toBe('DELETE');
   });
 
   it('should Update customer in DB', () => {
@@ -177,17 +177,17 @@ describe('CustomersService', () => {
     };
 
     service.updateCustomer({
-      "fname": "Ahmed",
-      "lname": "Ali" ,
-      "birthday": new Date(),
-      "gender": "m"
-    },1).subscribe((customer: Customer) => {
+      'fname': 'Ahmed',
+      'lname': 'Ali' ,
+      'birthday': new Date(),
+      'gender': 'm'
+    }, 1).subscribe((customer: Customer) => {
       expect(customer.customerID).toEqual(1);
     });
 
     const req = httpMock.expectOne(API_ROUTES.UPDATE_CUSTOMER);
     req.flush(dummyCustomers);
-    expect(req.request.method).toBe("PUT");
+    expect(req.request.method).toBe('PUT');
   });
 
 });

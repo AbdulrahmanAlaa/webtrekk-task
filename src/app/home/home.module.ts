@@ -9,10 +9,10 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     TranslateModule,
-    BsDropdownModule.forRoot()    
+    BsDropdownModule.forRoot()
   ],
-  declarations: [NavbarComponent,PageNotFoundComponent],
-  exports:[NavbarComponent,PageNotFoundComponent]
+  declarations: [NavbarComponent, PageNotFoundComponent],
+  exports: [NavbarComponent, PageNotFoundComponent]
 })
 /**
  * the Home Module decorator that contains reusable Components Pipes Services Guards ....

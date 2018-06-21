@@ -13,8 +13,8 @@ export class ListComponent implements OnInit {
 
   /*************  Life Cycle Hooks  ***********/
   /**
-  * parameters passed by angular Dependency Injection 
-  * @param customersService  contains the CRUD operation to handle customers data 
+  * parameters passed by angular Dependency Injection
+  * @param customersService  contains the CRUD operation to handle customers data
   */
   constructor(
     private customersService: CustomersService
@@ -25,9 +25,9 @@ export class ListComponent implements OnInit {
   }
 
 
-  //-------------------------------
+  // -------------------------------
   //     Public Functions
-  //-------------------------------
+  // -------------------------------
 
   /**
    * Get All Customer to be displayed

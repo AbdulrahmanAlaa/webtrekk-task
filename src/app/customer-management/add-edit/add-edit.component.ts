@@ -42,10 +42,10 @@ export class AddEditComponent implements OnInit {
 
   /*************  Life Cycle Hooks  ***********/
   /**
- * parameters passed by angular Dependency Injection 
- * @param customersService  contains the CRUD operation to handle customers data 
+ * parameters passed by angular Dependency Injection
+ * @param customersService  contains the CRUD operation to handle customers data
  * @param route  contains current active route data and paramenters
- * @param router  Helps and navigating between routes 
+ * @param router  Helps and navigating between routes
  * @param formBuilder  Helps and creating and validating Forms using reactive way
  */
   constructor(
@@ -58,36 +58,39 @@ export class AddEditComponent implements OnInit {
   }
 
   ngOnInit() {
-    // Find the Cusomer ID from URL segment    
+    // Find the Cusomer ID from URL segment
     this.route.params.subscribe((params) => {
-      // Get Single Customer Data      
+      // Get Single Customer Data
       const id = +params['id'];
       if (id) {
         // Edit Customer Case
         this.showSpinner = true;
 
         // Get Customer Information from backend
-        this.sub = this.customerService.getByCustomerID(+params['id']).subscribe(customer => {
-          if (customer) {
-            this.isEditMode = true;
-            this.customer = customer;
-            this.showSpinner = false;
-          }
-          // Create Form object with required validation rules
-          this.addCustomerForm = this.formBuilder.group({
-            fname: [this.isEditMode ? this.customer.name.first : '', Validators.required],
-            lname: [this.isEditMode ? this.customer.name.last : '', Validators.required],
-            birthday: [this.isEditMode ? new Date(this.customer.birthday) : new Date()],
-            gender: 'm'
-          });
+        this.sub = this.customerService
+          .getByCustomerID(+params['id'])
+          .subscribe(customer => {
+            if (customer) {
+              this.isEditMode = true;
+              this.customer = customer;
+              this.showSpinner = false;
+            }
+            // Create Form object with required validation rules
+            this.addCustomerForm = this.formBuilder.group({
+              fname: [this.isEditMode ? this.customer.name.first : '', Validators.required],
+              lname: [this.isEditMode ? this.customer.name.last : '', Validators.required],
+              birthday: [this.isEditMode ? new Date(this.customer.birthday) : new Date()],
+              gender: 'm'
+            });
 
-          // Set Customer Image
-          this.customer.customerImage = this.customer.customerImage || { name: '', value: '' };
-          this.customerImageURL = this.customer.customerImage.value ? this.customer.customerImage.value : this.addCustomerForm.controls.gender.value == 'm' ? 'assets/images/male.png' : 'assets/images/female.png';
+            // Set Customer Image
+            this.customer.customerImage = this.customer.customerImage || { name: '', value: '' };
+            this.customerImageURL = this.customer.customerImage.value ?
+              this.customer.customerImage.value : this.addCustomerForm.controls.gender.value === 'm' ?
+                'assets/images/male.png' : 'assets/images/female.png';
 
-        }, error => this.router.navigate([pages.customerManagement.path]));
-      }
-      else {
+          }, error => this.router.navigate([pages.customerManagement.path]));
+      } else {
         // Adding Customer Scenario
         this.addCustomerForm = this.formBuilder.group({
           fname: [this.isEditMode ? this.customer.name.first : '', Validators.required],
@@ -96,7 +99,8 @@ export class AddEditComponent implements OnInit {
           gender: 'm'
         });
         // Set Default Image
-        this.customerImageURL = this.addCustomerForm.controls.gender.value == 'm' ? 'assets/images/male.png' : 'assets/images/female.png';
+        this.customerImageURL = this.addCustomerForm.controls.gender.value === 'm' ?
+          'assets/images/male.png' : 'assets/images/female.png';
       }
 
     }, () => {
@@ -105,9 +109,9 @@ export class AddEditComponent implements OnInit {
   }
 
 
-  //-------------------------------
+  // -------------------------------
   //     Public Functions
-  //-------------------------------
+  // -------------------------------
 
   /**
    * Update form Gender with selected one
@@ -115,8 +119,9 @@ export class AddEditComponent implements OnInit {
    */
   public setGender(value: string) {
     this.addCustomerForm.controls.gender.setValue(value);
-    if (this.customerImageURL && this.customerImageURL.match(/male.png|female.png/))
-      this.customerImageURL = this.addCustomerForm.controls.gender.value == 'm' ? 'assets/images/male.png' : 'assets/images/female.png';
+    if (this.customerImageURL && this.customerImageURL.match(/male.png|female.png/)) {
+      this.customerImageURL = this.addCustomerForm.controls.gender.value === 'm' ? 'assets/images/male.png' : 'assets/images/female.png';
+    }
   }
 
   /**
@@ -128,7 +133,7 @@ export class AddEditComponent implements OnInit {
     const input = event.target as HTMLInputElement || event.srcElement as HTMLInputElement;
     if (input.files && input.files[0] && FileReader) {
 
-      // Validate image 
+      // Validate image
       const extension = input.value.substring(input.value.lastIndexOf('.') + 1).toLowerCase();
       if (this.isValidExtension(extension)) {
 
@@ -156,7 +161,8 @@ export class AddEditComponent implements OnInit {
       }
 
     } else {
-      this.customerImageURL = this.addCustomerForm.controls.gender.value == 'm' ? 'assets/images/male.png' : 'assets/images/female.png';
+      this.customerImageURL = this.addCustomerForm.controls.gender.value === 'm' ?
+       'assets/images/male.png' : 'assets/images/female.png';
       this.imageError = '';
     }
   }
@@ -184,9 +190,9 @@ export class AddEditComponent implements OnInit {
     }
   }
 
-  //-------------------------------
+  // -------------------------------
   //     Private Functions
-  //-------------------------------
+  // -------------------------------
 
   /** handle navigation to list view */
   private handleSuccess(customer) {
@@ -194,11 +200,11 @@ export class AddEditComponent implements OnInit {
   }
 
   /**
-   *  Check extention matches the valid extenstion or not 
-   * @param extension 
+   *  Check extensions matches the valid extension or not
+   * @param extension
    */
   private isValidExtension(extension: string) {
-    return extension == "gif" || extension == "png" || extension == "jpeg" || extension == "jpg";
+    return extension === 'gif' || extension === 'png' || extension === 'jpeg' || extension === 'jpg';
   }
 
 }
