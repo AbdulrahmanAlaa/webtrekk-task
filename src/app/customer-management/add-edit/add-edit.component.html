@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-lg-8">
         <p class="text-center add_edit__image_error"><small>{{imageError}}</small></p>
-        <img  width="250px" [src]="customerImageURL"
+        <img style="max-height: 250px;max-width: 100%;"  [src]="customerImageURL"
           class="add_edit__user_image rounded-circle" alt="">
         <label class="add_edit__block" for="customerimage">
           <span placement="bottom" [tooltip]="'customer-management.add.image'|translate" class="add_edit__uploader-icon rounded-circle icon-add"></span>
