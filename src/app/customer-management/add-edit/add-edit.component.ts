@@ -80,7 +80,7 @@ export class AddEditComponent implements OnInit {
               fname: [this.isEditMode ? this.customer.name.first : '', Validators.required],
               lname: [this.isEditMode ? this.customer.name.last : '', Validators.required],
               birthday: [this.isEditMode ? new Date(this.customer.birthday) : new Date()],
-              gender: 'm'
+              gender: this.customer.gender
             });
 
             // Set Customer Image
