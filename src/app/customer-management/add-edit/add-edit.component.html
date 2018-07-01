@@ -11,7 +11,7 @@
         <input #customerimage  (change)="customerImageChanged($event)" id="customerimage" type="file">
       </div>
     </div>
-    <div class="row">
+  <div class="row">
 
       <!-- First Name Part -->
       <div [ngClass]="{'was-validated': (submitted || addCustomerForm.controls['fname']?.touched) && !addCustomerForm.controls['fname']?.valid}"
