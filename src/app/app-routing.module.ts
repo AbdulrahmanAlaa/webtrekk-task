@@ -16,6 +16,10 @@ const routes: Routes = [
     loadChildren: 'src/app/customer-management/customer-management.module#CustomerManagementModule'
   },
   {
+    path: '',
+    loadChildren: 'src/app/auth/auth.module#AuthModule'
+  },
+  {
     path: '**',
     component: PageNotFoundComponent,
   }

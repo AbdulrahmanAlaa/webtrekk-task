@@ -21,5 +21,13 @@ export const pages = {
             }
 
         }
+    },
+    auth: {
+        login: {
+            path: 'login'
+        },
+        register: {
+            path: 'register'
+        }
     }
 };
