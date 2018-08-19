@@ -6,14 +6,25 @@ const mongoose = require('mongoose');
 const db = mongoose.connection;
 const app = express();
 const helper = require('./shared/helper');
+const cors = require('cors');
 
+// Load application Configurations 
+const config = require('./configurations/environment');
+
+// Allow Cross Origin Requests
+app.use(cors());
+
+// Register Auth Strategy 
+require('./configurations/passport');
+
+// To parse application/json header.
 app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json.
+
+
 app.use(bodyParser.json({ limit: '5mb', extended: true }, ));
 
 
-
-// Intilaize Application APIs Routes
+// Initialize Application APIs Routes
 const allroutes = require('./routes');
 app.use('/api', allroutes);
 
@@ -23,11 +34,8 @@ app.use(express.static(__dirname + '/../dist'));
 // Log DataBase Error
 db.on('error', console.error);
 
-
-
-
-// Connnect to mongolab DB
-mongoose.connect('mongodb://admin:admin123@ds147180.mlab.com:47180/webtrekk');
+// Connect to mongolab DB
+mongoose.connect(config.databaseUrl);
 
 // Populating data if DB is not already populated.
 helper.populateDb();

@@ -2,8 +2,10 @@
 const express = require('express');
 const router = express.Router();
 const customersRoutes = require('./customers');
+const authRoutes = require('./auth');
 
-/** Initilizing Customer Module Routes */
+/** Initializing Customer Module Routes */
 router.use('/customers', customersRoutes);
+router.use('/auth', authRoutes);
 
 module.exports = router;

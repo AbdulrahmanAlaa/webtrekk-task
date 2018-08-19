@@ -51,7 +51,7 @@ customersModel.seed = () => {
     const customers = require('../shared/configurations/customers');
     Customers.collection.insert(customers, function (err, customer) {
         if (err) {
-            console.log('error occured in populating database');
+            console.log('error occurred in populating database');
         }
         else {
             console.log('Customers table populated.');
