@@ -17,6 +17,26 @@ module.exports = (app) => {
     app.use(passport.initialize());
     app.use(passport.session());
 
+    /**
+     * Extracting the User information from 3rd party Oauth and adding or getting other info from DB
+     * @param {string} accessToken jwt token received from 3'rd party auth
+     * @param {string} refreshToken the refresh token to refresh the access token after it expires
+     * @param {Object} profile the user object returned after the service call
+     * @param {Function} done the middle where that handle auth flow
+     */
+    const getOrCreateUserFromDB = (accessToken, refreshToken, profile, done) => {
+        Users.getBy({ email: profile.emails[0].value }).then((user) => {
+            done(null, user);
+        }, (error) => {
+            Users.create({ name: profile.displayName, id: profile.id, email: profile.emails[0].value }).then((user) => {
+                done(null, user);
+            }, error => {
+                done(error);
+            });
+        });
+    };
+
+
     passport.serializeUser(function (user, done) {
         done(null, user);
     });
@@ -27,8 +47,8 @@ module.exports = (app) => {
         }, done);
     });
 
+    /** Email Authentication from DB */
     passport.use(
-        // Defining the passport email/password validation strategy
         new LocalStrategy({
             usernameField: 'email',
             passwordField: 'password'
@@ -43,6 +63,7 @@ module.exports = (app) => {
         })
     );
 
+    /** Local JWT Authentication Configurations */
     passport.use(
         new JWTStrategy({
             jwtFromRequest: ExtractJwt.fromAuthHeaderAsBearerToken(),
@@ -53,6 +74,7 @@ module.exports = (app) => {
         })
     );
 
+    /** Facebook Authentication Configurations */
     passport.use(new FacebookStrategy(
         {
             clientID: config.FACEBOOK.APP_ID,
@@ -60,58 +82,26 @@ module.exports = (app) => {
             callbackURL: "http://localhost:8080/api/auth/facebook/callback",
             profileFields: ['id', 'emails', 'name', 'displayName']
         },
-        (accessToken, refreshToken, profile, done) => {
-            // console.log('profile:', profile);
-            Users.getBy({ email: profile.emails[0].value }).then((user) => {
-                done(null, user);
-            }, (error) => {
-                Users.create({ name: profile.displayName, id: profile.id, email: profile.emails[0].value }).then((user) => {
-                    done(null, user);
-                }, error => {
-                    done(error);
-                });
-            });
-        }
+        getOrCreateUserFromDB
     ));
 
+    /** Google Authentication Configurations */
     passport.use(new GoogleStrategy({
         clientID: config.GOOGLE.CLIENT,
         clientSecret: config.GOOGLE.SECRET,
         callbackURL: config.GOOGLE.CALLBACKURL,
         accessType: 'offline'
-    }, (accessToken, refreshToken, profile, done) => {
-        // Extract the minimal profile information we need from the profile object
-        // provided by Google
-        Users.getBy({ email: profile.emails[0].value }).then((user) => {
-            done(null, user);
-        }, (error) => {
-            Users.create({ name: profile.displayName, id: profile.id, email: profile.emails[0].value }).then((user) => {
-                done(null, user);
-            }, error => {
-                done(error);
-            });
-        });
-    }
+    }, getOrCreateUserFromDB
     ));
 
+    /** Linked-in Authentication Configurations */
     passport.use(new LinkedInStrategy({
         consumerKey: config.LINKEDIN.KEY,
         consumerSecret: config.LINKEDIN.SECRET,
         callbackURL: config.LINKEDIN.CALLBACKURL,
         profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
-    }, (accessToken, refreshToken, profile, done) => {
-        // Extract the minimal profile information we need from the profile object
-        // provided by Google
-        Users.getBy({ email: profile.emails[0].value }).then((user) => {
-            done(null, user);
-        }, (error) => {
-            Users.create({ name: profile.displayName, id: profile.id, email: profile.emails[0].value }).then((user) => {
-                done(null, user);
-            }, error => {
-                done(error);
-            });
-        });
-    }
+    }, getOrCreateUserFromDB
     ));
+
 
 }
