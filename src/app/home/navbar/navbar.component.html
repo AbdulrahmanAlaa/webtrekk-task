@@ -40,13 +40,19 @@
       </li>
     </ul>
     <ul class="navbar-nav ml-auto">
-      <li  class="nav-item">
-        <a [routerLink]="'/login'">
-          Login
+      <li *ngIf="isLoggedIn" class="nav-item">
+        <a (click)="logout()"
+          class="btn btn-default ml-2">
+          <span class="icon-exit"></span>
+          <span> Logout </span>
         </a>
       </li>
-      <li (click)="logout()" class="nav-item">
-        Logout
+      <li *ngIf="!isLoggedIn" class="nav-item">
+        <a [routerLink]="'/login'"
+          class="btn btn-default ml-2">
+          <span class="icon-enter"></span>
+          <span> Login </span>
+        </a>
       </li>
     </ul>
   </div>

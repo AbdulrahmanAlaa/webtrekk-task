@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { User } from '../interfaces/user';
 import { LOCAL_STORAGE_PREFIX, LOCAL_STORAGE_USER } from './../../config/defines';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable()
 export class StorageService {
@@ -8,11 +9,15 @@ export class StorageService {
   /** holds current logged in user info*/
   public user: User;
 
+  /** Behavior Subject for authentication status */
+  public authentication = new BehaviorSubject<boolean>(false);
+
   /**
    * intiating the default values
   */
   constructor() {
     this.user = this.getStorage(LOCAL_STORAGE_USER) || null;
+    this.authentication.next(this.user ? true : false);
   }
 
 

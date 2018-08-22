@@ -29,6 +29,8 @@ export class AuthService {
       this.storageService.user = {} as User;
       this.storageService.user.email = response.user.email;
       this.storageService.user.token = response.user.token;
+      this.storageService.authentication.next(true);
+
       return response;
     }));
   }
@@ -36,6 +38,7 @@ export class AuthService {
   logout() {
     this.storageService.user = null;
     this.storageService.empty();
+    this.storageService.authentication.next(false);
   }
 
 }
