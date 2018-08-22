@@ -4,7 +4,8 @@ module.exports = {
     },
     FACEBOOK: {
         APP_ID: 307774006437737,
-        SECRET: '32ed2585b40535e7bbf1c57b2668802d'
+        SECRET: '32ed2585b40535e7bbf1c57b2668802d',
+        CALLBACKURL: 'http://localhost:8080/api/auth/facebook/callback'
     },
     GOOGLE: {
         CLIENT: '412651205299-avr83n5f78ia6jrvjf10kibck56slbam.apps.googleusercontent.com',

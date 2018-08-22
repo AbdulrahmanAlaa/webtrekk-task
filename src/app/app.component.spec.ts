@@ -5,10 +5,12 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { HttpLoaderFactory } from './app.module';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { StorageService } from './shared/services/storage.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [StorageService],
       imports: [
         HttpClientModule,
         TranslateModule.forRoot({
