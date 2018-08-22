@@ -8,6 +8,9 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
+import { CustomersService } from '../customers.service';
+import { CustomersServiceMock } from '../../tests/mocks/services/customer.service';
+import { LoginComponent } from '../../auth/login/login.component';
 
 
 describe('AddEditComponent', () => {
@@ -18,7 +21,12 @@ describe('AddEditComponent', () => {
     TestBed.configureTestingModule({
       imports: [
         FormsModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+          {
+            path: 'login',
+            component: LoginComponent
+          }
+        ]),
         ReactiveFormsModule,
         HttpClientModule,
         BsDropdownModule.forRoot(),
@@ -32,7 +40,13 @@ describe('AddEditComponent', () => {
           }
         })
       ],
-      declarations: [AddEditComponent]
+      // providers: [
+      //   {
+      //     provide: CustomersService,
+      //     useClass: CustomersServiceMock
+      //   }
+      // ],
+      declarations: [AddEditComponent, LoginComponent]
     })
       .compileComponents();
   }));

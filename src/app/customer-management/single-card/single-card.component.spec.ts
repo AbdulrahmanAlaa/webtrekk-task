@@ -7,6 +7,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
+import { CustomersServiceMock } from '../../tests/mocks/services/customer.service';
+import { CustomersService } from '../customers.service';
 
 describe('SingleCardComponent', () => {
   let component: SingleCardComponent;

@@ -4,6 +4,8 @@ import { SocialComponent } from './social.component';
 import { StorageService } from '../../shared/services/storage.service';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoginComponent } from '../login/login.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 describe('SocialComponent', () => {
   let component: SocialComponent;
@@ -13,10 +15,17 @@ describe('SocialComponent', () => {
     TestBed.configureTestingModule({
       providers: [StorageService],
       imports: [
-        RouterTestingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        RouterTestingModule.withRoutes([
+          {
+            path: 'login',
+            component: LoginComponent
+          }
+        ]),
         HttpClientTestingModule
       ],
-      declarations: [SocialComponent]
+      declarations: [SocialComponent, LoginComponent]
     })
       .compileComponents();
   }));

@@ -5,6 +5,7 @@ import { StorageService } from '../../shared/services/storage.service';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { LoginComponent } from '../login/login.component';
 
 describe('RegisterComponent', () => {
   let component: RegisterComponent;
@@ -16,10 +17,15 @@ describe('RegisterComponent', () => {
       imports: [
         FormsModule,
         ReactiveFormsModule,
-        RouterTestingModule,
+        RouterTestingModule.withRoutes([
+          {
+            path: 'login',
+            component: LoginComponent
+          }
+        ]),
         HttpClientTestingModule
       ],
-      declarations: [RegisterComponent]
+      declarations: [RegisterComponent, LoginComponent]
     })
       .compileComponents();
   }));
