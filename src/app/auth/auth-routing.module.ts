@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
+import { SocialComponent } from './social/social.component';
 
 const routes: Routes = [
   {
@@ -12,6 +13,10 @@ const routes: Routes = [
   {
     path: pages.auth.register.path,
     component: RegisterComponent
+  },
+  {
+    path: pages.auth.social.facebook.path,
+    component: SocialComponent
   }
 ];
 

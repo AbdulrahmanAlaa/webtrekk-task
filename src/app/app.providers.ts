@@ -3,8 +3,10 @@ import { TokenInterceptorService } from './shared/services/token-interceptor.ser
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { StorageService } from './shared/services/storage.service';
 import { AuthenticatedGuard } from './shared/guards/authenticated.guard';
+import { JwtHelperService } from './shared/services/jwt-helper.service';
 
 export const providers = [
+    JwtHelperService,
     AuthenticatedGuard,
     AuthService,
     StorageService,

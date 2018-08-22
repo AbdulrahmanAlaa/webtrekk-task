@@ -28,6 +28,11 @@ export const pages = {
         },
         register: {
             path: 'register'
+        },
+        social: {
+            facebook: {
+                path: 'facebook/:token'
+            }
         }
     }
 };

@@ -1,4 +1,6 @@
-let env = {};
+let env = {
+    baseUrl:`http://localhost:${process.env.PORT || 8080}`
+};
 switch (process.env.NODE_ENV) {
     case 'development':
         env.databaseUrl = 'mongodb://localhost:27017/webtrekk';

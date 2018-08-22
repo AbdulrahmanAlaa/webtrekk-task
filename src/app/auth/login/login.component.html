@@ -40,17 +40,17 @@
     <small id="emailDesc"
       class="form-text invalid-feedback">
       <span *ngIf="loginForm.controls.password.hasError('required')">
-        Please enter password 
+        Please enter password
       </span>
       <span *ngIf="loginForm.controls.password.hasError('minlength')">
-        password shall be at least 8 characters  
+        password shall be at least 8 characters
       </span>
       <span *ngIf="loginForm.controls.password.hasError('maxlength')">
-        password shall not exceed 38 characters  
+        password shall not exceed 38 characters
       </span>
-      </small>
+    </small>
   </div>
-
+  <a href="http://localhost:8080/api/auth/facebook">Login with Facebook</a>
   <button type="submit"
     class="btn btn-dark">Login</button>
 </form>

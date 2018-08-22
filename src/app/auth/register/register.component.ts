@@ -14,6 +14,8 @@ export class RegisterComponent implements OnInit {
   /** holds form state if the submitted it */
   public submitted = false;
 
+  public error: string;
+
   constructor(
     private _formBuilder: FormBuilder,
     private authService: AuthService,
@@ -32,7 +34,7 @@ export class RegisterComponent implements OnInit {
     if (this.registerForm.valid) {
       // ToDo:
       // Login The User and save the token
-      
+
     }
   }
 

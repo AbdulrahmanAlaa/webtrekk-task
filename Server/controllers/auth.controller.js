@@ -28,9 +28,7 @@ authCtrl.login = (req, res, next) => {
                 res.send(err);
             }
             // generate a signed son web token with the contents of user object and return it in the response
-            console.log('user:', user);
             const token = jwt.sign(user, config.JWT.SECRETE) || {};
-            console.log('token:', token);
             return res.json({ user, token });
         });
     })(req, res);
@@ -59,4 +57,5 @@ authCtrl.register = (req, res, next) => {
         res.send(filtered);
     }
 }
+
 module.exports = authCtrl;

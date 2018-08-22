@@ -5,13 +5,17 @@ const validationHelper = require('../shared/helpers/validation.helper');
 
 /** defining schema for users table */
 const usersSchema = new mongoose.Schema({
+    id: {
+        type: String,
+        required: false
+    },
     email: {
         type: String,
         required: true
     },
     password: {
         type: String,
-        required: true,
+        required: false,
         minlength: [8, validationHelper.minLength('password', 8)],
         maxlength: [38, validationHelper.maxLength('password', 38)]
     }
@@ -61,7 +65,6 @@ usersModel.getOne = (email, password) => {
     }
 
     Users.findOne({ email, password }, (err, dbUser) => {
-        console.log('in findOne...')
         if (err) {
             results.reject(err);
         }
@@ -69,7 +72,6 @@ usersModel.getOne = (email, password) => {
         if (dbUser) {
             const user = dbUser.toObject();
             delete user.password;
-            console.log('dbUser', dbUser);
             results.resolve(user);
         } else {
             results.reject({ status: 'error', error: 'Invalid User supplied.' });
@@ -127,49 +129,6 @@ usersModel.create = (user) => {
     return results.promise;
 }
 
-// /**
-//  * Remove Customer by ID
-//  * @param {number} customerId customer identifier 
-//  */
-// usersModel.remove = (customerId) => {
-//     const results = q.defer();
-//     Users.find({ customerID: customerId }).remove((err, dbCustomer) => {
-//         if (err) {
-//             results.reject(err);
-//         }
-//         if (dbCustomer) {
-//             results.resolve(dbCustomer);
-//         } else {
-//             results.reject({ status: 'error', error: 'Invalid Customer supplied.' });
-//         }
-//     });
-//     return results.promise;
-// };
-
-// /**
-//  * Update Customer Data in DB
-//  * @param {Customer} body the Customer New Data 
-//  */
-// usersModel.update = (body) => {
-//     const results = q.defer();
-//     const customerID = body && body.customerID;
-//     if (!customerID) {
-//         results.reject({ status: 'error', error: 'customer Id not supplied.' });
-//     }
-//     Users.findOneAndUpdate({ customerID }, body, { upsert: false }, (err, dbCustomer) => {
-//         if (err) {
-//             results.reject(err);
-//         }
-
-//         if (dbCustomer) {
-//             results.resolve(dbCustomer);
-//         } else {
-//             results.reject({ status: 'error', error: 'Invalid customer supplied.' });
-//         }
-//     });
-//     return results.promise;
-
-// }
 
 // Customer Model 
 usersModel.Users = Users;

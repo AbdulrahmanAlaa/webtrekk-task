@@ -7,6 +7,7 @@ import { map } from 'rxjs/operators';
 import { StorageService } from './storage.service';
 import { LOCAL_STORAGE_USER } from '../../config/defines';
 import { LOCAL_STORAGE_TOKEN } from './../../config/defines';
+import { JwtHelperService } from './jwt-helper.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,6 +16,7 @@ export class AuthService {
 
   constructor(
     private http: HttpClient,
+    private jwtHelperService: JwtHelperService,
     private storageService: StorageService
   ) { }
 
@@ -39,6 +41,17 @@ export class AuthService {
     this.storageService.user = null;
     this.storageService.empty();
     this.storageService.authentication.next(false);
+  }
+
+
+  socialLogin(token) {
+    this.storageService.empty();
+    const user = {} as User;
+    user.token = token;
+    user.email = this.jwtHelperService.decodeToken(token).email;
+    this.storageService.setStorage(LOCAL_STORAGE_TOKEN, token);
+    this.storageService.setStorage(LOCAL_STORAGE_USER, user);
+    this.storageService.authentication.next(true);
   }
 
 }
