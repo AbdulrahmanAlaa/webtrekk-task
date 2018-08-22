@@ -1,6 +1,7 @@
 
 const mongoose = require('mongoose');
 const q = require('q');
+const validationHelper = require('../shared/helpers/validation.helper');
 
 /** defining schema for users table */
 const usersSchema = new mongoose.Schema({
@@ -10,7 +11,9 @@ const usersSchema = new mongoose.Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        minlength: [8, validationHelper.minLength('password', 8)],
+        maxlength: [38, validationHelper.maxLength('password', 38)]
     }
 });
 
@@ -58,7 +61,7 @@ usersModel.getOne = (email, password) => {
     }
 
     Users.findOne({ email, password }, (err, dbUser) => {
-       console.log('in findOne...')
+        console.log('in findOne...')
         if (err) {
             results.reject(err);
         }
@@ -66,7 +69,7 @@ usersModel.getOne = (email, password) => {
         if (dbUser) {
             const user = dbUser.toObject();
             delete user.password;
-            console.log('dbUser',dbUser);
+            console.log('dbUser', dbUser);
             results.resolve(user);
         } else {
             results.reject({ status: 'error', error: 'Invalid User supplied.' });
@@ -76,31 +79,53 @@ usersModel.getOne = (email, password) => {
     return results.promise;
 }
 
-// /**
-//  * Add Customer To Users Collection in DB
-//  * @param {Customer} customer 
-//  */
-// usersModel.create = (customer) => {
-//     const results = q.defer();
+/**
+ * Get Single Customer
+ * @param {number} id customer identifier 
+ */
+usersModel.getBy = (query) => {
+    const results = q.defer();
+    Users.findOne(query, (err, dbUser) => {
+        if (err) {
+            results.reject(err);
+        }
 
-//     if (!customer) {
-//         results.reject({ status: 'error', error: 'customer not supplied.' });
-//     }
+        if (dbUser) {
+            const user = dbUser.toObject();
+            delete user.password;
+            results.resolve(user);
+        } else {
+            results.reject({ status: 'error', error: 'Invalid User supplied.' });
+        }
 
-//     Users.create(customer, (err, dbCustomer) => {
-//         if (err) {
-//             results.reject(err);
-//         }
+    });
+    return results.promise;
+}
 
-//         if (dbCustomer) {
-//             results.resolve(dbCustomer);
-//         } else {
-//             results.reject({ status: 'error', error: 'Invalid customer supplied.' });
-//         }
+/**
+ * Add User To Users Collection in DB
+ * @param {User} user 
+ */
+usersModel.create = (user) => {
+    const results = q.defer();
 
-//     });
-//     return results.promise;
-// }
+    if (!user) {
+        results.reject({ status: 'error', error: 'invalid user supplied' });
+    }
+    Users.create(user, (err, dbUser) => {
+        if (err) {
+            results.reject(err);
+        }
+
+        if (dbUser) {
+            results.resolve(dbUser);
+        } else {
+            results.reject({ status: 'error', error: 'Invalid customer supplied.' });
+        }
+
+    });
+    return results.promise;
+}
 
 // /**
 //  * Remove Customer by ID

@@ -1,5 +1,8 @@
 import { TranslateService } from '@ngx-translate/core';
 import { Component } from '@angular/core';
+import { AuthService } from './../../shared/services/auth.service';
+import { Router } from '@angular/router';
+import { pages } from './../../config/pages-config';
 
 @Component({
   selector: 'wt-navbar',
@@ -11,7 +14,10 @@ export class NavbarComponent {
      * parameters passed by angular Dependency Injection
      * @param translate
      */
-  constructor(private translate: TranslateService
+  constructor(
+    private router: Router,
+    private authService: AuthService,
+    private translate: TranslateService
   ) { }
 
 
@@ -22,5 +28,10 @@ export class NavbarComponent {
   languageChanged(language) {
     // Configure the Language to be English by default
     this.translate.use(language);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate([pages.auth.login.path]);
   }
 }
