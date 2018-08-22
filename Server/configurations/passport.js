@@ -79,7 +79,7 @@ module.exports = (app) => {
         {
             clientID: config.FACEBOOK.APP_ID,
             clientSecret: config.FACEBOOK.SECRET,
-            callbackURL: "http://localhost:8080/api/auth/facebook/callback",
+            callbackURL: config.FACEBOOK.CALLBACKURL,
             profileFields: ['id', 'emails', 'name', 'displayName']
         },
         getOrCreateUserFromDB
