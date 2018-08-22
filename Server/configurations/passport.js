@@ -7,6 +7,8 @@ module.exports = (app) => {
     const LocalStrategy = require('passport-local').Strategy;
     const { ExtractJwt, Strategy: JWTStrategy } = require('passport-jwt');
     const FacebookStrategy = require('passport-facebook').Strategy;
+    const GoogleStrategy = require('passport-google-oauth20').Strategy;
+    const LinkedInStrategy = require('passport-linkedin').Strategy;
 
     const Users = require('../models/user.model');
     const config = require('./defines');
@@ -20,7 +22,6 @@ module.exports = (app) => {
     });
 
     passport.deserializeUser(function (user, done) {
-        console.log('deserializeUser', user)
         Users.getBy({ _id: id }).then((err, user) => {
             done(err, user);
         }, done);
@@ -71,6 +72,46 @@ module.exports = (app) => {
                 });
             });
         }
+    ));
+
+    passport.use(new GoogleStrategy({
+        clientID: config.GOOGLE.CLIENT,
+        clientSecret: config.GOOGLE.SECRET,
+        callbackURL: config.GOOGLE.CALLBACKURL,
+        accessType: 'offline'
+    }, (accessToken, refreshToken, profile, done) => {
+        // Extract the minimal profile information we need from the profile object
+        // provided by Google
+        Users.getBy({ email: profile.emails[0].value }).then((user) => {
+            done(null, user);
+        }, (error) => {
+            Users.create({ name: profile.displayName, id: profile.id, email: profile.emails[0].value }).then((user) => {
+                done(null, user);
+            }, error => {
+                done(error);
+            });
+        });
+    }
+    ));
+
+    passport.use(new LinkedInStrategy({
+        consumerKey: config.LINKEDIN.KEY,
+        consumerSecret: config.LINKEDIN.SECRET,
+        callbackURL: config.LINKEDIN.CALLBACKURL,
+        profileFields: ['id', 'first-name', 'last-name', 'email-address', 'headline']
+    }, (accessToken, refreshToken, profile, done) => {
+        // Extract the minimal profile information we need from the profile object
+        // provided by Google
+        Users.getBy({ email: profile.emails[0].value }).then((user) => {
+            done(null, user);
+        }, (error) => {
+            Users.create({ name: profile.displayName, id: profile.id, email: profile.emails[0].value }).then((user) => {
+                done(null, user);
+            }, error => {
+                done(error);
+            });
+        });
+    }
     ));
 
 }

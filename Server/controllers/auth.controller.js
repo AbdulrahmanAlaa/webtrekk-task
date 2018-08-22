@@ -58,4 +58,18 @@ authCtrl.register = (req, res, next) => {
     }
 }
 
+authCtrl.facebook = (req, res) => {
+    const token = jwt.sign(req.user, config.JWT.SECRETE) || {};
+    res.redirect(`http://localhost:4200/facebook/` + token);
+}
+
+authCtrl.google = (req, res) => {
+    const token = jwt.sign(req.user, config.JWT.SECRETE) || {};
+    res.redirect(`http://localhost:4200/google/` + token);
+}
+
+authCtrl.linkedin = (req, res) => {
+    const token = jwt.sign(req.user, config.JWT.SECRETE) || {};
+    res.redirect(`http://localhost:4200/linkedin/` + token);
+}
 module.exports = authCtrl;

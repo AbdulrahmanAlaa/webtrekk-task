@@ -32,6 +32,15 @@ export const pages = {
         social: {
             facebook: {
                 path: 'facebook/:token'
+            },
+            google: {
+                path: 'google/:token'
+            },
+            twitter: {
+                path: 'twitter/:token'
+            },
+            linkedin: {
+                path: 'linkedin/:token'
             }
         }
     }

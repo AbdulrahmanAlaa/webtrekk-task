@@ -17,6 +17,18 @@ const routes: Routes = [
   {
     path: pages.auth.social.facebook.path,
     component: SocialComponent
+  },
+  {
+    path: pages.auth.social.google.path,
+    component: SocialComponent
+  },
+  {
+    path: pages.auth.social.twitter.path,
+    component: SocialComponent
+  },
+  {
+    path: pages.auth.social.linkedin.path,
+    component: SocialComponent
   }
 ];
 
