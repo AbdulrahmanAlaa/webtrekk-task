@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "set NODE_ENV=development && nodemon Server",
+    "start": "node Server",
+    "start:dev": "set NODE_ENV=development && nodemon Server",
     "build": "ng build",
     "test": "ng test --browsers PhantomJS",
     "lint": "ng lint",
