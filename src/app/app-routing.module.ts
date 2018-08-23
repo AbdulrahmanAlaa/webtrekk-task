@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { pages } from './config/pages-config';
 import { PageNotFoundComponent } from './home/page-not-found/page-not-found.component';
+import { AuthenticatedGuard } from './shared/guards/authenticated.guard';
 /**
  * holds application routes for lazy loading modules
  */
@@ -13,7 +14,13 @@ const routes: Routes = [
   },
   {
     path: pages.customerManagement.path,
-    loadChildren: 'src/app/customer-management/customer-management.module#CustomerManagementModule'
+    loadChildren: 'src/app/customer-management/customer-management.module#CustomerManagementModule',
+    canActivate: [AuthenticatedGuard],
+    canLoad: [AuthenticatedGuard]
+  },
+  {
+    path: '',
+    loadChildren: 'src/app/auth/auth.module#AuthModule'
   },
   {
     path: '**',

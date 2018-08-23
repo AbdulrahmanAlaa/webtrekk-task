@@ -6,35 +6,55 @@ const mongoose = require('mongoose');
 const db = mongoose.connection;
 const app = express();
 const helper = require('./shared/helper');
+const cors = require('cors');
 
+
+// Load application Configurations 
+const config = require('./configurations/environment');
+const defines = require('./configurations/defines');
+
+// Allow Cross Origin Requests
+app.use(cors());
+
+
+// Register Auth Strategy 
+require('./configurations/passport')(app);
+
+// Configure Express Session
+const session = require('express-session');
+app.use(session({
+    secret: 'keyboard cat',
+    resave: false,
+    saveUninitialized: true,
+    cookie: { secure: false }
+}))
+
+// To parse application/json header.
 app.use(bodyParser.urlencoded({ extended: false }));
-// parse application/json.
-app.use(bodyParser.json({ limit: '5mb', extended: true }, ));
 
 
+app.use(bodyParser.json({ limit: '5mb', extended: true }));
 
-// Intilaize Application APIs Routes
+
+// Initialize Application APIs Routes
 const allroutes = require('./routes');
 app.use('/api', allroutes);
 
 // Serve only the static files form the dist directory
-app.use(express.static(__dirname + '/../dist'));
+app.use(express.static(__dirname + '/../dist/webtrekk-task'));
 
 // Log DataBase Error
 db.on('error', console.error);
 
-
-
-
-// Connnect to mongolab DB
-mongoose.connect('mongodb://admin:admin123@ds147180.mlab.com:47180/webtrekk');
+// Connect to mongolab DB
+mongoose.connect(config.databaseUrl);
 
 // Populating data if DB is not already populated.
 helper.populateDb();
 
 app.get('/*', function (req, res) {
     const pathName = (req.path.match(/customer/) || req.path === '/') ? 'index.html' : req.path;
-    res.sendFile(path.join(__dirname + '/../dist/webtrekk-task/' + pathName));
+    res.sendFile(path.join(__dirname + '/../dist/webtrekk-task/' + 'index.html'));
 });
 
 // Start the app by listening on the default Heroku port

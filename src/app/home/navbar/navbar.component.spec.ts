@@ -7,6 +7,7 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { HttpLoaderFactory } from '../../app.module';
 import { HttpClient } from '@angular/common/http';
+import { StorageService } from '../../shared/services/storage.service';
 
 describe('NavbarComponent', () => {
   let component: NavbarComponent;
@@ -14,6 +15,7 @@ describe('NavbarComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      providers: [StorageService],
       imports: [
         HttpClientModule,
         RouterTestingModule,
@@ -26,9 +28,9 @@ describe('NavbarComponent', () => {
           }
         })
       ],
-      declarations: [ NavbarComponent ]
+      declarations: [NavbarComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,0 +1,58 @@
+<!-- Login Form -->
+<form [formGroup]="loginForm"
+  (ngSubmit)="submit()"
+  [ngClass]="submitted?'was-validated':''">
+  <!-- Email -->
+  <div class="form-group mt-2">
+    <label for="email">Email</label>
+    <input formControlName="email"
+      autocomplete="off"
+      type="email"
+      class="form-control"
+      name="email"
+      id="email"
+      aria-describedby="emailDesc"
+      placeholder="example@hotmail.com"
+      required>
+    <small id="emailDesc"
+      class="form-text invalid-feedback">
+      <span *ngIf="loginForm.controls.email.hasError('required')">
+        Please enter email
+      </span>
+      <span *ngIf="loginForm.controls.email.hasError('email')">
+        Enter valid email
+      </span>
+    </small>
+  </div>
+
+  <!-- Password -->
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input formControlName="password"
+      autocomplete="off"
+      type="password"
+      class="form-control invalid"
+      name="password"
+      id="password"
+      pattern=".{8,38}"
+      placeholder="P@ssword"
+      required>
+    <small id="emailDesc"
+      class="form-text invalid-feedback">
+      <span *ngIf="loginForm.controls.password.hasError('required')">
+        Please enter password
+      </span>
+      <span *ngIf="loginForm.controls.password.hasError('minlength')">
+        password shall be at least 8 characters
+      </span>
+      <span *ngIf="loginForm.controls.password.hasError('maxlength')">
+        password shall not exceed 38 characters
+      </span>
+    </small>
+  </div>
+  <a href="http://localhost:8080/api/auth/facebook">Login with Facebook</a>
+  <a href="http://localhost:8080/api/auth/google">Login with Google</a>
+  <a href="http://localhost:8080/api/auth/linkedin">Login with Linkedin</a>
+  <button type="submit"
+    class="btn btn-dark">Login</button>
+</form>

@@ -1,0 +1,58 @@
+<!-- Register Form -->
+<form [formGroup]="registerForm"
+  (ngSubmit)="submit()"
+  [ngClass]="submitted?'was-validated':''">
+  <!-- Email -->
+  <div class="form-group mt-2">
+    <label for="email">Email</label>
+    <input formControlName="email"
+      autocomplete="off"
+      type="email"
+      class="form-control"
+      name="email"
+      id="email"
+      aria-describedby="emailDesc"
+      placeholder="example@hotmail.com"
+      required>
+    <small id="emailDesc"
+      class="form-text invalid-feedback">
+      <span *ngIf="registerForm.controls.email.hasError('required')">
+        Please enter email
+      </span>
+      <span *ngIf="registerForm.controls.email.hasError('email')">
+        Enter valid email
+      </span>
+    </small>
+  </div>
+
+  <!-- Password -->
+  <div class="form-group">
+    <label for="password">Password:</label>
+    <input formControlName="password"
+      autocomplete="off"
+      type="password"
+      class="form-control invalid"
+      name="password"
+      id="password"
+      pattern=".{8,38}"
+      placeholder="P@ssword"
+      required>
+    <small id="emailDesc"
+      class="form-text invalid-feedback">
+      <span *ngIf="registerForm.controls.password.hasError('required')">
+        Please enter password
+      </span>
+      <span *ngIf="registerForm.controls.password.hasError('minlength')">
+        password shall be at least 8 characters
+      </span>
+      <span *ngIf="registerForm.controls.password.hasError('maxlength')">
+        password shall not exceed 38 characters
+      </span>
+    </small>
+  </div>
+  <div *ngIf="error" class="alert alert-danger" role="alert">
+    <strong>Error </strong> {{error}}
+  </div>
+  <button type="submit"
+    class="btn btn-dark">Register</button>
+</form>

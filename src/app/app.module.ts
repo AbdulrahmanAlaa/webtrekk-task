@@ -8,7 +8,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TranslateModule, TranslateLoader } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
-import {TooltipModule} from 'ngx-bootstrap/tooltip';
+import { TooltipModule } from 'ngx-bootstrap/tooltip';
+import { providers } from './app.providers';
+import { AuthModule } from './auth/auth.module';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -24,6 +26,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
   ],
   imports: [
     HomeModule,
+    AuthModule,
     TooltipModule.forRoot(),
     HttpClientModule,
     FormsModule,
@@ -38,7 +41,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       }
     }),
   ],
-  providers: [],
+  providers,
   bootstrap: [AppComponent]
 })
 export class AppModule { }

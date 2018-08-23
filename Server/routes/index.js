@@ -2,8 +2,11 @@
 const express = require('express');
 const router = express.Router();
 const customersRoutes = require('./customers');
+const authRoutes = require('./auth');
+const passport = require('passport');
 
-/** Initilizing Customer Module Routes */
-router.use('/customers', customersRoutes);
+/** Initializing Customer Module Routes */
+router.use('/customers', passport.authenticate('jwt', { session: false }), customersRoutes);
+router.use('/auth', authRoutes);
 
 module.exports = router;
