@@ -1,3 +1,6 @@
+const os = require("os");
+
+const baseUrl = `http://${os.hostname()}:${process.env.PORT || 8080}`
 module.exports = {
     JWT: {
         SECRETE: 'fab09a09-7de5-4675-8ba6-f402965eec86'
@@ -5,16 +8,16 @@ module.exports = {
     FACEBOOK: {
         APP_ID: 307774006437737,
         SECRET: '32ed2585b40535e7bbf1c57b2668802d',
-        CALLBACKURL: 'http://localhost:8080/api/auth/facebook/callback'
+        CALLBACKURL: `${baseUrl}/api/auth/facebook/callback`
     },
     GOOGLE: {
         CLIENT: '412651205299-avr83n5f78ia6jrvjf10kibck56slbam.apps.googleusercontent.com',
         SECRET: 'vDW_MP6c6CCUNTdX0LSdzZb6',
-        CALLBACKURL: 'http://localhost:8080/api/auth/google/callback'
+        CALLBACKURL: `${baseUrl}/api/auth/google/callback`
     },
     LINKEDIN: {
         KEY: '77qudy29y2tim4',
         SECRET: 'onNwBiKCBiFtdSe6',
-        CALLBACKURL: 'http://localhost:8080/api/auth/linkedin/callback'
+        CALLBACKURL: `${baseUrl}/api/auth/linkedin/callback`
     }
 }
