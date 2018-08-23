@@ -22,12 +22,15 @@ require('./configurations/passport')(app);
 
 // Configure Express Session
 const session = require('express-session');
+
 app.use(session({
     secret: 'keyboard cat',
     resave: false,
     saveUninitialized: true,
     cookie: { secure: false }
-}))
+}));
+
+
 
 // To parse application/json header.
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -39,6 +42,13 @@ app.use(bodyParser.json({ limit: '5mb', extended: true }));
 // Initialize Application APIs Routes
 const allroutes = require('./routes');
 app.use('/api', allroutes);
+
+const swaggerUi = require('swagger-ui-express'),
+    swaggerDocument = require('./swagger.json');
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument, { "showExplorer": true }));
+
+app.use('/api/v1', allroutes);
 
 // Serve only the static files form the dist directory
 app.use(express.static(__dirname + '/../dist/webtrekk-task'));
